@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:xtop_app/ui/screens/cart/cart.screen.dart';
+import 'package:xtop_app/ui/screens/category/category_screen.dart';
 // import 'package:xtop_app/controllers/bloc/splash_bloc_bloc.dart';
 import 'package:xtop_app/ui/screens/home/home_screen.dart';
+import 'package:xtop_app/ui/screens/lacation/location_screen.dart';
+import 'package:xtop_app/ui/screens/news/news_screen.dart';
 import 'package:xtop_app/ui/screens/onboarding/first_onboarding_screen.dart'
     as first_onboarding;
 import 'package:xtop_app/ui/screens/onboarding/second_onboarding_screen.dart'
@@ -16,6 +20,10 @@ class AppRoutes {
   static String secondOnboarding = '/second_onboarding';
   static String home = '/home';
   static String signIn = '/sign_in';
+  static String category = '/category';
+  static String cart = '/cart';
+  static String location = '/location';
+  static String news = '/news';
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashScreen(),
@@ -26,5 +34,9 @@ class AppRoutes {
         const second_onboarding.SecondOnboardingScreen(),
     home: (context) => const HomeScreen(),
     signIn: (context) => const SignInScreen(),
+    category: (context) => const CategoryScreen(),
+    cart: (context) => const CartScreen(),
+    location: (context) => const LocationScreen(),
+    news: (context) => const NewsScreen(),
   };
 }

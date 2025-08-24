@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _current_index = 0;
+  // var _current_index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: _bottom_navigation_bar(),
     );
   }
 
@@ -174,50 +173,50 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _bottom_navigation_bar() {
-    return BottomNavigationBar(
-      currentIndex: _current_index,
-      onTap: (index) {
-        setState(() {
-          _current_index = index;
-        });
-      },
-      type: BottomNavigationBarType.fixed,
-      enableFeedback: false,
-      selectedItemColor: AppColors.greyscaleDarkColor,
-      unselectedItemColor: AppColors.greyscaleColor,
-      selectedLabelStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-      backgroundColor: AppColors.secondaryColor,
-      items: [
-        BottomNavigationBarItem(
-          backgroundColor: AppColors.accentColor,
-          icon: Image.asset('assets/icons/home_ligth.png'),
-          activeIcon: Image.asset('assets/icons/home_dark.png'),
-          label: 'Asosiy',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/icons/category_ligth.png'),
-          activeIcon: Image.asset('assets/icons/category_dark.png'),
-          label: 'Kategoriya',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/icons/cart_ligth.png'),
-          activeIcon: Image.asset('assets/icons/cart_dark.png'),
-          label: 'Savat',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/icons/location_ligth.png'),
-          activeIcon: Image.asset('assets/icons/location_dark.png'),
-          label: 'Joylashuv',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/icons/news_ligth.png'),
-          activeIcon: Image.asset('assets/icons/news_dark.png'),
-          label: 'Yangiliklar',
-        ),
-      ],
-    );
-  }
+  // Widget _bottom_navigation_bar() {
+  //   return BottomNavigationBar(
+  //     currentIndex: _current_index,
+  //     onTap: (index) {
+  //       setState(() {
+  //         _current_index = index;
+  //       });
+  //     },
+  //     type: BottomNavigationBarType.fixed,
+  //     enableFeedback: false,
+  //     selectedItemColor: AppColors.greyscaleDarkColor,
+  //     unselectedItemColor: AppColors.greyscaleColor,
+  //     selectedLabelStyle: TextStyle(
+  //       fontWeight: FontWeight.bold,
+  //     ),
+  //     backgroundColor: AppColors.secondaryColor,
+  //     items: [
+  //       BottomNavigationBarItem(
+  //         backgroundColor: AppColors.accentColor,
+  //         icon: Image.asset('assets/icons/home_ligth.png'),
+  //         activeIcon: Image.asset('assets/icons/home_dark.png'),
+  //         label: 'Asosiy',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Image.asset('assets/icons/category_ligth.png'),
+  //         activeIcon: Image.asset('assets/icons/category_dark.png'),
+  //         label: 'Kategoriya',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Image.asset('assets/icons/cart_ligth.png'),
+  //         activeIcon: Image.asset('assets/icons/cart_dark.png'),
+  //         label: 'Savat',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Image.asset('assets/icons/location_ligth.png'),
+  //         activeIcon: Image.asset('assets/icons/location_dark.png'),
+  //         label: 'Joylashuv',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Image.asset('assets/icons/news_ligth.png'),
+  //         activeIcon: Image.asset('assets/icons/news_dark.png'),
+  //         label: 'Yangiliklar',
+  //       ),
+  //     ],
+  //   );
+  // }
 }

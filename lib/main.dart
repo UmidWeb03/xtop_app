@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/ui/screens/home/home_screen.dart';
+// import 'package:xtop_app/ui/screens/home/home_screen.dart';
 // import 'package:xtop_app/core/app_routes.dart';
+import 'package:xtop_app/ui/screens/home/app.dart';
 
 void main() {
   runApp(const X_App());
@@ -16,7 +17,7 @@ class X_App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // initialRoute: AppRoutes.splash,
       // routes: AppRoutes.routes,
-      home: const HomeScreen(),
+      home: const AppScreens(),
     );
   }
 }
