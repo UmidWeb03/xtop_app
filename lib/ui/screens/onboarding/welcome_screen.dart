@@ -100,6 +100,7 @@ class _WelcomeLogoSection extends StatelessWidget {
       'assets/images/x_logo.png',
       width: 210,
       height: 98,
+      fit: BoxFit.cover,
     );
   }
 }
