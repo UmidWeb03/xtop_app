@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/app_constants.dart';
 import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/screens/onboarding/widgets/slider_card.dart';
 import 'package:xtop_app/ui/widgets/App_button.dart';
+import 'package:xtop_app/ui/screens/onboarding/widgets/slider_dot.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -16,124 +16,161 @@ class WelcomeScreen extends StatelessWidget {
         color: AppColors.primaryColor,
         child: Stack(
           children: [
-            _welcome_background(),
-            _welcome_text_tittle(context),
+            const _WelcomeBackgroundSection(),
+            _WelcomeContentSection(),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _welcome_background() {
+class _WelcomeBackgroundSection extends StatelessWidget {
+  const _WelcomeBackgroundSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      // width: double.infinity,
-      // height: double.infinity,
+      width: double.infinity,
+      height: double.infinity,
       child: Image.asset(
         'assets/images/welcome_background.png',
-        // width: double.infinity,
+        width: double.infinity,
         height: double.infinity,
         fit: BoxFit.cover,
       ),
     );
   }
+}
 
-  Widget _welcome_text_tittle(BuildContext context) {
+class _WelcomeContentSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
       left: 0,
       right: 0,
+      // top: 0,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.transparent,
-              AppColors.accentColor.withOpacity(0.7),
-              AppColors.accentColor.withOpacity(0.9),
-            ],
-          ),
-        ),
-        child: Column(
-          // mainAxisSize: MainAxisSize.min,
+        height: 550,
+        padding:
+            const EdgeInsets.only(top: 140, bottom: 0, left: 24, right: 24),
+        decoration: _buildGradientBackground(),
+        child: const Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _welcome_logo(),
-            _welcome_tittle(),
-            const SizedBox(height: 24),
-            _welcome_description_text(),
-            const SizedBox(height: 40),
-            _welcome_scroller_slider(),
-            const SizedBox(height: 40),
-            _welcome_button(context: context)
+            _WelcomeLogoSection(),
+            _WelcomeTitleSection(),
+            SizedBox(height: 24),
+            _WelcomeDescriptionSection(),
+            SizedBox(height: 24),
+            _WelcomeScrollerSection(),
+            SizedBox(height: 24),
+            _WelcomeButtonSection(),
           ],
         ),
       ),
     );
   }
 
-  Widget _welcome_logo() {
-    return Positioned(
-      top: 80,
-      left: 20,
-      child: Image.asset(
-        'assets/images/x_logo.png',
-        width: 210,
-        height: 98,
+  BoxDecoration _buildGradientBackground() {
+    return BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.transparent,
+          AppColors.greyscaleDarkColor.withOpacity(0.7),
+          AppColors.accentColor.withOpacity(0.7),
+        ],
+        stops: const [0.0, 0.3, 1.0],
       ),
     );
   }
+}
 
-  Widget _welcome_tittle() {
+class _WelcomeLogoSection extends StatelessWidget {
+  const _WelcomeLogoSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/images/x_logo.png',
+      width: 210,
+      height: 98,
+    );
+  }
+}
+
+class _WelcomeTitleSection extends StatelessWidget {
+  const _WelcomeTitleSection();
+
+  @override
+  Widget build(BuildContext context) {
     return const Text(
       'Xush kelibsiz!',
       style: TextStyle(
         color: AppColors.secondaryColor,
-        fontSize: 46,
+        fontSize: 47,
         fontWeight: FontWeight.bold,
-        height: 1.2,
+        height: 1.1,
+        letterSpacing: -0.5,
       ),
     );
   }
+}
 
-  Widget _welcome_description_text() {
+class _WelcomeDescriptionSection extends StatelessWidget {
+  const _WelcomeDescriptionSection();
+
+  @override
+  Widget build(BuildContext context) {
     return const Text(
       'Kundalik ehtiyojlaringiz uchun asrning eng yaxshi chegirmalarga asoslangan elektron tijarat ilovasi!',
       style: TextStyle(
         color: AppColors.secondaryColor,
         fontSize: 17,
-        height: 1.5,
-        fontWeight: FontWeight.bold,
+        height: 1.6,
+        fontWeight: FontWeight.w500,
       ),
     );
   }
+}
 
-  Widget _welcome_scroller_slider() {
-    return Center(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            SliderCard(width: 38, height: 8, color: AppColors.secondaryColor),
-            SliderCard(width: 8, height: 8, color: AppColors.secondaryColor),
-            SliderCard(width: 8, height: 8, color: AppColors.secondaryColor),
-          ],
-        ),
-      ),
+class _WelcomeScrollerSection extends StatelessWidget {
+  const _WelcomeScrollerSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SliderDot(isActive: true, color: AppColors.secondaryColor),
+        SliderDot(isActive: false, color: AppColors.secondaryColor),
+        SliderDot(isActive: false, color: AppColors.secondaryColor),
+      ],
     );
   }
+}
 
-  Widget _welcome_button({required BuildContext context}) {
+class _WelcomeButtonSection extends StatelessWidget {
+  const _WelcomeButtonSection();
+
+  @override
+  Widget build(BuildContext context) {
     return AppButton(
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, AppRoutes.firstOnboarding);
-      },
-      text: 'Keyingi',
+      onPressed: () => _continuePressed(context),
+      text: 'Davom etish',
       width: double.infinity,
-      height: 58,
+      height: 56,
       backgroundColor: AppColors.primaryColor,
+      textColor: AppColors.secondaryColor,
     );
+  }
+
+  void _continuePressed(BuildContext context) {
+    Navigator.pushReplacementNamed(context, AppRoutes.firstOnboardingScreen);
   }
 }

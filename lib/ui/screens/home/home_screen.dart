@@ -3,15 +3,8 @@ import 'package:xtop_app/core/app_routes.dart';
 import 'package:xtop_app/ui/widgets/App_button.dart';
 import 'package:xtop_app/core/app_constants.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  // var _current_index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +67,13 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.only(right: 20),
       child: AppButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, AppRoutes.firstOnboarding);
+          Navigator.pushReplacementNamed(context, AppRoutes.signInScreen);
         },
         text: 'krish',
         width: 79,
         height: 38,
         backgroundColor: AppColors.accentColor,
+        textColor: AppColors.secondaryColor,
       ),
     );
   }
@@ -88,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
-        height: 675,
         // color: AppColors.secondaryColor,
         decoration: BoxDecoration(
           color: AppColors.secondaryColor,
@@ -101,8 +94,27 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _body_search_section(),
-            _body_banner_text(),
-            _body_banner_section()
+            _body_text(
+              text: 'Maxsus takliflar',
+              color: AppColors.greyscaleDarkColor,
+              size: 20,
+            ),
+            _body_banner_section(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _body_text(
+                  text: 'Eng Mashxurlari',
+                  color: AppColors.greyscaleDarkColor,
+                  size: 20,
+                ),
+                _body_text(
+                  text: 'Barchasi',
+                  color: AppColors.primaryColor,
+                  size: 15,
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -111,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _body_search_section() {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
       child: TextField(
         decoration: InputDecoration(
           hintText: 'Qidiruv',
@@ -144,18 +156,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _body_banner_text() {
+  Widget _body_text(
+      {required String text, required Color color, required double size}) {
     return Padding(
       padding: const EdgeInsets.only(
         left: 24.0,
         right: 24.0,
-        top: 0,
+        top: 24.0,
         bottom: 24.0,
       ),
       child: Text(
-        'Maxsus takliflar',
+        text,
         style: TextStyle(
-          fontSize: 25,
+          color: color,
+          fontSize: size,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -173,50 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // Widget _bottom_navigation_bar() {
-  //   return BottomNavigationBar(
-  //     currentIndex: _current_index,
-  //     onTap: (index) {
-  //       setState(() {
-  //         _current_index = index;
-  //       });
-  //     },
-  //     type: BottomNavigationBarType.fixed,
-  //     enableFeedback: false,
-  //     selectedItemColor: AppColors.greyscaleDarkColor,
-  //     unselectedItemColor: AppColors.greyscaleColor,
-  //     selectedLabelStyle: TextStyle(
-  //       fontWeight: FontWeight.bold,
-  //     ),
-  //     backgroundColor: AppColors.secondaryColor,
-  //     items: [
-  //       BottomNavigationBarItem(
-  //         backgroundColor: AppColors.accentColor,
-  //         icon: Image.asset('assets/icons/home_ligth.png'),
-  //         activeIcon: Image.asset('assets/icons/home_dark.png'),
-  //         label: 'Asosiy',
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: Image.asset('assets/icons/category_ligth.png'),
-  //         activeIcon: Image.asset('assets/icons/category_dark.png'),
-  //         label: 'Kategoriya',
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: Image.asset('assets/icons/cart_ligth.png'),
-  //         activeIcon: Image.asset('assets/icons/cart_dark.png'),
-  //         label: 'Savat',
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: Image.asset('assets/icons/location_ligth.png'),
-  //         activeIcon: Image.asset('assets/icons/location_dark.png'),
-  //         label: 'Joylashuv',
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: Image.asset('assets/icons/news_ligth.png'),
-  //         activeIcon: Image.asset('assets/icons/news_dark.png'),
-  //         label: 'Yangiliklar',
-  //       ),
-  //     ],
-  //   );
+  // Widget _search_catigory_scroll_section() {
+  //   return SizedBox();
   // }
 }

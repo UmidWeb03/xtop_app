@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/ui/screens/cart/cart.screen.dart';
 import 'package:xtop_app/ui/screens/category/category_screen.dart';
-// import 'package:xtop_app/controllers/bloc/splash_bloc_bloc.dart';
+import 'package:xtop_app/ui/screens/app.dart';
 import 'package:xtop_app/ui/screens/home/home_screen.dart';
 import 'package:xtop_app/ui/screens/lacation/location_screen.dart';
 import 'package:xtop_app/ui/screens/news/news_screen.dart';
@@ -14,29 +14,31 @@ import 'package:xtop_app/ui/screens/splash/splash_screen.dart';
 import 'package:xtop_app/ui/screens/onboarding/welcome_screen.dart';
 
 class AppRoutes {
-  static String splash = '/';
-  static String welcome = '/welcome';
-  static String firstOnboarding = '/first_onboarding';
-  static String secondOnboarding = '/second_onboarding';
-  static String home = '/home';
-  static String signIn = '/sign_in';
-  static String category = '/category';
-  static String cart = '/cart';
-  static String location = '/location';
-  static String news = '/news';
+  static String splashScreen = '/';
+  static String welcomeScreen = '/welcome';
+  static String firstOnboardingScreen = '/first_onboarding';
+  static String secondOnboardingScreen = '/second_onboarding';
+  static String appScreen = '/app';
+  static String homeScreen = '/home';
+  static String signInScreen = '/sign_in';
+  static String categoryScreen = '/category';
+  static String cartScreen = '/cart';
+  static String locationScreen = '/location';
+  static String newsScreen = '/news';
 
   static Map<String, WidgetBuilder> routes = {
-    splash: (context) => const SplashScreen(),
-    welcome: (context) => const WelcomeScreen(),
-    firstOnboarding: (context) =>
+    splashScreen: (context) => const SplashScreen(),
+    welcomeScreen: (context) => const WelcomeScreen(),
+    firstOnboardingScreen: (context) =>
         const first_onboarding.FirstOnboardingScreen(),
-    secondOnboarding: (context) =>
+    secondOnboardingScreen: (context) =>
         const second_onboarding.SecondOnboardingScreen(),
-    home: (context) => const HomeScreen(),
-    signIn: (context) => const SignInScreen(),
-    category: (context) => const CategoryScreen(),
-    cart: (context) => const CartScreen(),
-    location: (context) => const LocationScreen(),
-    news: (context) => const NewsScreen(),
+    appScreen: (context) => const AppScreens(),
+    homeScreen: (context) => const HomeScreen(),
+    signInScreen: (context) => const SignInScreen(),
+    categoryScreen: (context) => const CategoryScreen(),
+    cartScreen: (context) => const CartScreen(),
+    locationScreen: (context) => const LocationScreen(),
+    newsScreen: (context) => const NewsScreen(),
   };
 }

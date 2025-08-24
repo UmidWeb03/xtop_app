@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/app_constants.dart';
 import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/screens/onboarding/widgets/slider_card.dart';
+import 'package:xtop_app/ui/screens/onboarding/widgets/slider_dot.dart';
 import 'package:xtop_app/ui/widgets/App_button.dart';
 
 class FirstOnboardingScreen extends StatelessWidget {
@@ -15,15 +15,20 @@ class FirstOnboardingScreen extends StatelessWidget {
         height: double.infinity,
         child: Stack(
           children: [
-            _onboarding_background(),
-            _onboarding_text_tittle(context: context),
+            const _OnboardingBackgroundSection(),
+            const _OnboardingContentSection(),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _onboarding_background() {
+class _OnboardingBackgroundSection extends StatelessWidget {
+  const _OnboardingBackgroundSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Image.asset(
       'assets/images/first_onboarding.png',
       width: double.infinity,
@@ -31,64 +36,86 @@ class FirstOnboardingScreen extends StatelessWidget {
       fit: BoxFit.cover,
     );
   }
+}
 
-  Widget _onboarding_text_tittle({required BuildContext context}) {
+class _OnboardingContentSection extends StatelessWidget {
+  const _OnboardingContentSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
       left: 0,
       right: 0,
       child: Container(
         width: double.infinity,
+        height: 370,
+        padding: const EdgeInsets.only(top: 64, bottom: 0, left: 24, right: 24),
         alignment: Alignment.center,
         color: AppColors.secondaryColor,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Column(
           children: [
-            _onboarding_tittle(),
+            const _OnboardingTitleSection(),
             const SizedBox(height: 40),
-            _onboarding_scroller_slider(),
-            const SizedBox(height: 40),
-            _onboarding_button(context: context),
+            const _OnboardingScrollerSlider(),
+            const SizedBox(height: 27),
+            const _OnboardingButtonSection(),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _onboarding_tittle() {
+class _OnboardingTitleSection extends StatelessWidget {
+  const _OnboardingTitleSection();
+
+  @override
+  Widget build(BuildContext context) {
     return const Text(
       "Chegirmadagi har qanday mahsulot sizga yaqin.",
       style: TextStyle(
         fontSize: 40,
-        height: 1.2,
+        height: 1.1,
         fontWeight: FontWeight.bold,
       ),
       textAlign: TextAlign.center,
     );
   }
+}
 
-  Widget _onboarding_scroller_slider() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          SliderCard(width: 8, height: 8, color: AppColors.primaryColor),
-          SliderCard(width: 38, height: 8, color: AppColors.accentColor),
-          SliderCard(width: 8, height: 8, color: AppColors.primaryColor),
-        ],
-      ),
+class _OnboardingScrollerSlider extends StatelessWidget {
+  const _OnboardingScrollerSlider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SliderDot(isActive: false, color: AppColors.primaryColor),
+        SliderDot(isActive: true, color: AppColors.primaryColor),
+        SliderDot(isActive: false, color: AppColors.primaryColor),
+      ],
+    );
+  }
+}
+
+class _OnboardingButtonSection extends StatelessWidget {
+  const _OnboardingButtonSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return AppButton(
+      onPressed: () => _continuePressed(context),
+      text: 'Davom etish',
+      width: double.infinity,
+      height: 56,
+      backgroundColor: AppColors.primaryColor,
+      textColor: AppColors.secondaryColor,
     );
   }
 
-  Widget _onboarding_button({required BuildContext context}) {
-    return AppButton(
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, AppRoutes.secondOnboarding);
-      },
-      text: 'Davom etish',
-      width: double.infinity,
-      height: 58,
-      backgroundColor: AppColors.primaryColor,
-    );
+  void _continuePressed(BuildContext context) {
+    Navigator.pushReplacementNamed(context, AppRoutes.secondOnboardingScreen);
   }
 }

@@ -12,11 +12,11 @@ class AppScreens extends StatefulWidget {
 
 class _AppScreensState extends State<AppScreens> {
   final List<String> _screens = [
-    AppRoutes.home,
-    AppRoutes.category,
-    AppRoutes.cart,
-    AppRoutes.location,
-    AppRoutes.news,
+    AppRoutes.homeScreen,
+    AppRoutes.categoryScreen,
+    AppRoutes.cartScreen,
+    AppRoutes.locationScreen,
+    AppRoutes.newsScreen,
   ];
 
   int _selectedIndex = 0;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/app_constants.dart';
-// import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/services/navigation_service.dart';
+import 'package:xtop_app/services/screen_navigate_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,15 +10,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final NavigationService _navigationService = NavigationService();
+  final _navigationService = SplashScreenNavigateService();
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      _navigationService.checkNavigationSplash(context);
-    });
+    _navigationService.checkNavigateSplash(context);
   }
 
   @override
@@ -31,15 +28,20 @@ class _SplashScreenState extends State<SplashScreen> {
         color: AppColors.primaryColor,
         child: Stack(
           children: [
-            _splash_background(),
-            _splash_logo(),
+            const _SplashBackgroundSection(),
+            const _SplashLogoSection(),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _splash_background() {
+class _SplashBackgroundSection extends StatelessWidget {
+  const _SplashBackgroundSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Image.asset(
       'assets/images/x_background.png',
       width: double.infinity,
@@ -47,8 +49,13 @@ class _SplashScreenState extends State<SplashScreen> {
       fit: BoxFit.cover,
     );
   }
+}
 
-  Widget _splash_logo() {
+class _SplashLogoSection extends StatelessWidget {
+  const _SplashLogoSection();
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 50),
