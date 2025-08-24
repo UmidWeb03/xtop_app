@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/app_constants.dart';
 import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/views/onboarding/widgets/slider_card.dart';
-import 'package:xtop_app/widgets/App_button.dart';
+import 'package:xtop_app/ui/screens/onboarding/widgets/slider_card.dart';
+import 'package:xtop_app/ui/widgets/App_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -26,11 +26,11 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _welcome_background() {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      // width: double.infinity,
+      // height: double.infinity,
       child: Image.asset(
         'assets/images/welcome_background.png',
-        width: double.infinity,
+        // width: double.infinity,
         height: double.infinity,
         fit: BoxFit.cover,
       ),
@@ -43,7 +43,8 @@ class WelcomeScreen extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 40),
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -66,7 +67,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 40),
             _welcome_scroller_slider(),
             const SizedBox(height: 40),
-            _app_button(context: context)
+            _welcome_button(context: context)
           ],
         ),
       ),
@@ -124,11 +125,15 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _app_button({required BuildContext context}) {
+  Widget _welcome_button({required BuildContext context}) {
     return AppButton(
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, AppRoutes.firstOnboarding);
-        },
-        text: 'Keyingi');
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, AppRoutes.firstOnboarding);
+      },
+      text: 'Keyingi',
+      width: double.infinity,
+      height: 58,
+      backgroundColor: AppColors.primaryColor,
+    );
   }
 }

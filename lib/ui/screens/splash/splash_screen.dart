@@ -31,15 +31,15 @@ class _SplashScreenState extends State<SplashScreen> {
         color: AppColors.primaryColor,
         child: Stack(
           children: [
-            _backgroundWidget(),
-            _logoWidget(),
+            _splash_background(),
+            _splash_logo(),
           ],
         ),
       ),
     );
   }
 
-  Widget _backgroundWidget() {
+  Widget _splash_background() {
     return Image.asset(
       'assets/images/x_background.png',
       width: double.infinity,
@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Widget _logoWidget() {
+  Widget _splash_logo() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 50),

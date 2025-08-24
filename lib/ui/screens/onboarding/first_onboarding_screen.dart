@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/app_constants.dart';
 import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/views/onboarding/widgets/slider_card.dart';
-import 'package:xtop_app/widgets/App_button.dart';
+import 'package:xtop_app/ui/screens/onboarding/widgets/slider_card.dart';
+import 'package:xtop_app/ui/widgets/App_button.dart';
 
 class FirstOnboardingScreen extends StatelessWidget {
   const FirstOnboardingScreen({super.key});
@@ -27,7 +27,7 @@ class FirstOnboardingScreen extends StatelessWidget {
     return Image.asset(
       'assets/images/first_onboarding.png',
       width: double.infinity,
-      // height: double.infinity,
+      height: double.infinity,
       fit: BoxFit.cover,
     );
   }
@@ -39,10 +39,9 @@ class FirstOnboardingScreen extends StatelessWidget {
       right: 0,
       child: Container(
         width: double.infinity,
-        height: 370,
         alignment: Alignment.center,
         color: AppColors.secondaryColor,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Column(
           children: [
             _onboarding_tittle(),
@@ -87,6 +86,9 @@ class FirstOnboardingScreen extends StatelessWidget {
         Navigator.pushReplacementNamed(context, AppRoutes.secondOnboarding);
       },
       text: 'Davom etish',
+      width: double.infinity,
+      height: 58,
+      backgroundColor: AppColors.primaryColor,
     );
   }
 }
