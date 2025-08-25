@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/ui/screens/cart/cart.screen.dart';
-import 'package:xtop_app/ui/screens/category/category_screen.dart';
-import 'package:xtop_app/ui/screens/app.dart';
-import 'package:xtop_app/ui/screens/home/home_screen.dart';
-import 'package:xtop_app/ui/screens/lacation/location_screen.dart';
-import 'package:xtop_app/ui/screens/news/news_screen.dart';
-import 'package:xtop_app/ui/screens/onboarding/first_onboarding_screen.dart'
+import 'package:xtop_app/presentation/screens/cart/cart.screen.dart';
+import 'package:xtop_app/presentation/screens/category/category_screen.dart';
+import 'package:xtop_app/presentation/screens/app.dart';
+import 'package:xtop_app/presentation/screens/home/home_screen.dart';
+import 'package:xtop_app/presentation/screens/lacation/location_screen.dart';
+import 'package:xtop_app/presentation/screens/news/news_screen.dart';
+import 'package:xtop_app/presentation/screens/auth/onboarding/first_onboarding_screen.dart'
     as first_onboarding;
-import 'package:xtop_app/ui/screens/onboarding/second_onboarding_screen.dart'
+import 'package:xtop_app/presentation/screens/auth/onboarding/second_onboarding_screen.dart'
     as second_onboarding;
-import 'package:xtop_app/ui/screens/sign_in/sign_in.dart';
-import 'package:xtop_app/ui/screens/splash/splash_screen.dart';
-import 'package:xtop_app/ui/screens/onboarding/welcome_screen.dart';
+import 'package:xtop_app/presentation/screens/auth/sign_in/sign_in.dart';
+import 'package:xtop_app/presentation/screens/splash/splash_screen.dart';
+import 'package:xtop_app/presentation/screens/auth/onboarding/welcome_screen.dart';
 
 class AppRoutes {
   static String splashScreen = '/';

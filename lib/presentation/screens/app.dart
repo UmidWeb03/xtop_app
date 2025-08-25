@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_constants.dart';
-import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/screens/home/widgets/bottom_navigation_bar.dart';
+import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/presentation/screens/home/widgets/bottom_navigation_bar.dart';
 
 class AppScreens extends StatefulWidget {
   const AppScreens({super.key});

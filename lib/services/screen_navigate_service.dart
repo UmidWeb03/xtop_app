@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_routes.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/services/local_storage.dart';
 
 class SplashScreenNavigateService {

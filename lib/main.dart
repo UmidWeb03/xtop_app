@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:xtop_app/ui/screens/app.dart';
 // import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/screens/app.dart';
+import 'package:xtop_app/presentation/screens/app.dart';
 
 void main() {
   runApp(const X_App());

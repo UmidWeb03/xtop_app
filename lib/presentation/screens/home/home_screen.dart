@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/screens/home/widgets/search_action_bottom.dart';
-import 'package:xtop_app/ui/widgets/App_button.dart';
-import 'package:xtop_app/core/app_constants.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/presentation/screens/home/widgets/search_action_bottom.dart';
+import 'package:xtop_app/presentation/widgets/App_button.dart';
+import 'package:xtop_app/core/constants/app_constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -121,6 +122,9 @@ class _HomeBodySection extends StatelessWidget {
           children: [
             _HomeSearchSection(),
             _HomeTextSection(text: 'Maxsus takliflar', size: 20),
+            _HomeBannerSection(),
+            _HomeBannerSection(),
+            _HomeBannerSection(),
             _HomeBannerSection(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_constants.dart';
+import 'package:xtop_app/core/constants/app_constants.dart';
 import 'package:xtop_app/services/screen_navigate_service.dart';
 
 class SplashScreen extends StatefulWidget {

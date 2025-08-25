@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_constants.dart';
-import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/ui/widgets/App_button.dart';
-import 'package:xtop_app/ui/screens/onboarding/widgets/slider_dot.dart';
+import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/presentation/widgets/App_button.dart';
+import 'package:xtop_app/presentation/screens/auth/onboarding/widgets/slider_dot.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/app_constants.dart';
+import 'package:xtop_app/core/constants/app_constants.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final ValueChanged<int> onTap;
