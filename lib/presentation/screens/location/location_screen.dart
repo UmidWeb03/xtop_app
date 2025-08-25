@@ -9,7 +9,7 @@ class LocationScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Text(
-            'Location Screen',
+            'Cart Screen',
             style: TextStyle(fontSize: 24),
           ),
         ),

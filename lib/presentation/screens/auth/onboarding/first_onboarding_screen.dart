@@ -116,6 +116,6 @@ class _OnboardingButtonSection extends StatelessWidget {
   }
 
   void _continuePressed(BuildContext context) {
-    Navigator.pushReplacementNamed(context, AppRoutes.secondOnboardingScreen);
+    AppRoutes.navigateTo(context, AppRoutes.secondOnboardingScreen);
   }
 }

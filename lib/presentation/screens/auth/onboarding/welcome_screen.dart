@@ -172,6 +172,6 @@ class _WelcomeButtonSection extends StatelessWidget {
   }
 
   void _continuePressed(BuildContext context) {
-    Navigator.pushReplacementNamed(context, AppRoutes.firstOnboardingScreen);
+    AppRoutes.navigateTo(context,  AppRoutes.firstOnboardingScreen);
   }
 }

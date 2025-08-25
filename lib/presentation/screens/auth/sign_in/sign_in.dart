@@ -19,7 +19,7 @@ class SignInScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, AppRoutes.appScreen);
+                  AppRoutes.navigateTo(context, AppRoutes.appScreen);
                 },
                 child: Text('Go to Home'),
               )

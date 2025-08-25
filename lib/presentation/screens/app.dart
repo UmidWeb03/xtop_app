@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/core/models/navigation_item.dart';
 import 'package:xtop_app/presentation/screens/home/widgets/bottom_navigation_bar.dart';
 
 class AppScreens extends StatefulWidget {
@@ -11,60 +11,46 @@ class AppScreens extends StatefulWidget {
 }
 
 class _AppScreensState extends State<AppScreens> {
-  final List<String> _screens = [
-    AppRoutes.homeScreen,
-    AppRoutes.categoryScreen,
-    AppRoutes.cartScreen,
-    AppRoutes.locationScreen,
-    AppRoutes.newsScreen,
-  ];
-
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (_selectedIndex != index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<NavigationItem> items = NavigationItem.navigationItems;
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
-        children: _screens.map((e) => AppRoutes.routes[e]!(context)).toList(),
+        children: items.map((item) => item.screen).toList(),
       ),
       bottomNavigationBar: BottomNavigationBarWidget(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: AppColors.accentColor,
-            icon: Image.asset('assets/icons/home_ligth.png'),
-            activeIcon: Image.asset('assets/icons/home_dark.png'),
-            label: 'Asosiy',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/category_ligth.png'),
-            activeIcon: Image.asset('assets/icons/category_dark.png'),
-            label: 'Kategoriya',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/cart_ligth.png'),
-            activeIcon: Image.asset('assets/icons/cart_dark.png'),
-            label: 'Savat',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/location_ligth.png'),
-            activeIcon: Image.asset('assets/icons/location_dark.png'),
-            label: 'Joylashuv',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/news_ligth.png'),
-            activeIcon: Image.asset('assets/icons/news_dark.png'),
-            label: 'Yangiliklar',
-          ),
-        ],
+        items: items
+            .map(
+              (item) => BottomNavigationBarItem(
+                backgroundColor: AppColors.accentColor,
+                icon: Image.asset(
+                  item.lightIconPath,
+                  width: 24,
+                  height: 24,
+                ),
+                activeIcon: Image.asset(
+                  item.darkIconPath,
+                  width: 24,
+                  height: 24,
+                ),
+                label: item.label,
+                tooltip: item.label,
+              ),
+            )
+            .toList(),
       ),
     );
   }

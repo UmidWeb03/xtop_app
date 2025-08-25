@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:xtop_app/ui/screens/app.dart';
-// import 'package:xtop_app/core/app_routes.dart';
-import 'package:xtop_app/presentation/screens/app.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
+// import 'package:xtop_app/presentation/screens/app.dart';
 
 void main() {
   runApp(const X_App());
@@ -15,9 +14,9 @@ class X_App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: AppRoutes.splashScreen,
-      // routes: AppRoutes.routes,
-      home: const AppScreens(),
+      initialRoute: AppRoutes.splashScreen,
+      routes: AppRoutes.routes,
+      // home: const AppScreens(),
     );
   }
 }

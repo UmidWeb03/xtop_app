@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -58,8 +57,8 @@ class _HomeHeaderSection extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const _HomeLogoSection(),
-            _HomeLogoButtomSection(),
+            const _HeaderLogoSection(),
+            _HeaderButtonSection(),
           ],
         ),
       ),
@@ -67,8 +66,8 @@ class _HomeHeaderSection extends StatelessWidget {
   }
 }
 
-class _HomeLogoSection extends StatelessWidget {
-  const _HomeLogoSection();
+class _HeaderLogoSection extends StatelessWidget {
+  const _HeaderLogoSection();
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +80,8 @@ class _HomeLogoSection extends StatelessWidget {
   }
 }
 
-class _HomeLogoButtomSection extends StatelessWidget {
-  const _HomeLogoButtomSection();
+class _HeaderButtonSection extends StatelessWidget {
+  const _HeaderButtonSection();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class _HomeLogoButtomSection extends StatelessWidget {
   }
 
   void _handleLoginPressed(BuildContext context) {
-    Navigator.pushReplacementNamed(context, AppRoutes.signInScreen);
+    Navigator.pushNamed(context, AppRoutes.signInScreen);
   }
 }
 
@@ -120,17 +119,17 @@ class _HomeBodySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _HomeSearchSection(),
-            _HomeTextSection(text: 'Maxsus takliflar', size: 20),
-            _HomeBannerSection(),
-            _HomeBannerSection(),
-            _HomeBannerSection(),
-            _HomeBannerSection(),
+            _BodySearchSection(),
+            _BodyTextSection(text: 'Maxsus takliflar', size: 20),
+            _BodyBannerSection(),
+            _BodyBannerSection(),
+            _BodyBannerSection(),
+            _BodyBannerSection(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _HomeTextSection(text: 'Eng mashhurlari', size: 20),
-                _HomeTextSection(text: 'Barchasi', size: 15),
+                _BodyTextSection(text: 'Eng mashhurlari', size: 20),
+                _BodyTextSection(text: 'Barchasi', size: 15),
               ],
             )
           ],
@@ -140,8 +139,8 @@ class _HomeBodySection extends StatelessWidget {
   }
 }
 
-class _HomeSearchSection extends StatelessWidget {
-  const _HomeSearchSection();
+class _BodySearchSection extends StatelessWidget {
+  const _BodySearchSection();
 
   @override
   Widget build(BuildContext context) {
@@ -202,11 +201,11 @@ class _HomeSearchSection extends StatelessWidget {
   }
 }
 
-class _HomeTextSection extends StatelessWidget {
+class _BodyTextSection extends StatelessWidget {
   final String text;
   final double size;
 
-  const _HomeTextSection({required this.text, required this.size});
+  const _BodyTextSection({required this.text, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -229,8 +228,8 @@ class _HomeTextSection extends StatelessWidget {
   }
 }
 
-class _HomeBannerSection extends StatelessWidget {
-  const _HomeBannerSection();
+class _BodyBannerSection extends StatelessWidget {
+  const _BodyBannerSection();
 
   @override
   Widget build(BuildContext context) {
