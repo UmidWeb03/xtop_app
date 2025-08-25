@@ -26,11 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
         width: double.infinity,
         height: double.infinity,
         color: AppColors.primaryColor,
-        child: Stack(
-          children: [
-            const _SplashBackgroundSection(),
-            const _SplashLogoSection(),
-          ],
+        child: SafeArea(
+          child: Stack(
+            children: [
+              const _SplashBackgroundSection(),
+              const _SplashLogoSection(),
+            ],
+          ),
         ),
       ),
     );

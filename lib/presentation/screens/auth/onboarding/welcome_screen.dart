@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
-import 'package:xtop_app/presentation/widgets/App_button.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/widgets/slider_dot.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -30,15 +28,11 @@ class _WelcomeBackgroundSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Image.asset(
+      'assets/images/welcome_background.png',
       width: double.infinity,
       height: double.infinity,
-      child: Image.asset(
-        'assets/images/welcome_background.png',
-        width: double.infinity,
-        height: double.infinity,
-        fit: BoxFit.cover,
-      ),
+      fit: BoxFit.cover,
     );
   }
 }
@@ -50,7 +44,6 @@ class _WelcomeContentSection extends StatelessWidget {
       bottom: 0,
       left: 0,
       right: 0,
-      // top: 0,
       child: Container(
         width: double.infinity,
         height: 550,
@@ -67,8 +60,6 @@ class _WelcomeContentSection extends StatelessWidget {
             _WelcomeDescriptionSection(),
             SizedBox(height: 24),
             _WelcomeScrollerSection(),
-            SizedBox(height: 24),
-            _WelcomeButtonSection(),
           ],
         ),
       ),
@@ -153,25 +144,5 @@ class _WelcomeScrollerSection extends StatelessWidget {
         SliderDot(isActive: false, color: AppColors.secondaryColor),
       ],
     );
-  }
-}
-
-class _WelcomeButtonSection extends StatelessWidget {
-  const _WelcomeButtonSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppButton(
-      onPressed: () => _continuePressed(context),
-      text: 'Davom etish',
-      width: double.infinity,
-      height: 56,
-      backgroundColor: AppColors.primaryColor,
-      textColor: AppColors.secondaryColor,
-    );
-  }
-
-  void _continuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context,  AppRoutes.firstOnboardingScreen);
   }
 }

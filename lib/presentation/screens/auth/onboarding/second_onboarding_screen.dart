@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/widgets/slider_dot.dart';
-import 'package:xtop_app/presentation/widgets/App_button.dart';
 
 class SecondOnboardingScreen extends StatelessWidget {
   const SecondOnboardingScreen({super.key});
@@ -57,8 +55,6 @@ class _OnboardingContentSection extends StatelessWidget {
             const _OnboardingTitleSection(),
             const SizedBox(height: 40),
             const _OnboardingScrollerSlider(),
-            const SizedBox(height: 27),
-            const _OnboardingButtonSection(),
           ],
         ),
       ),
@@ -96,25 +92,5 @@ class _OnboardingScrollerSlider extends StatelessWidget {
         SliderDot(isActive: true, color: AppColors.primaryColor),
       ],
     );
-  }
-}
-
-class _OnboardingButtonSection extends StatelessWidget {
-  const _OnboardingButtonSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppButton(
-      onPressed: () => _continuePressed(context),
-      text: 'Davom etish',
-      width: double.infinity,
-      height: 56,
-      backgroundColor: AppColors.primaryColor,
-      textColor: AppColors.secondaryColor,
-    );
-  }
-
-  void _continuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.appScreen);
   }
 }

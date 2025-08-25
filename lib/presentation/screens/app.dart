@@ -35,7 +35,7 @@ class _AppScreensState extends State<AppScreens> {
         items: items
             .map(
               (item) => BottomNavigationBarItem(
-                backgroundColor: AppColors.accentColor,
+                backgroundColor: AppColors.secondaryColor,
                 icon: Image.asset(
                   item.lightIconPath,
                   width: 24,

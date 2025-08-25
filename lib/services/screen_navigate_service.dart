@@ -11,9 +11,9 @@ class SplashScreenNavigateService {
 
     final isFirstLaunch = await AppLocalStorage.isFirstLaunch();
 
-    if (!isFirstLaunch || isFirstLaunch == true) {
+    if (!isFirstLaunch) {
       // birinchi marta ilovaga kirilganda: Splash'dan WelcomeScreen'ga o'tadi
-      Navigator.pushReplacementNamed(context, AppRoutes.welcomeScreen);
+      Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
 
       /// Ikkinchi onboarding tugagach first launch ni false qilib HomeScreen'ga o'tadi
       await AppLocalStorage.setFirstLaunchDone();

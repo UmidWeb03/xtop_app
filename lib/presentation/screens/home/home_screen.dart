@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/screens/home/widgets/search_action_bottom.dart';
-import 'package:xtop_app/presentation/widgets/App_button.dart';
+import 'package:xtop_app/presentation/widgets/app_button.dart';
 import 'package:xtop_app/core/constants/app_constants.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
               const _HomeBackgroundSection(),
               CustomScrollView(
                 slivers: [
-                  _HomeHeaderSection(),
+                  const _HomeHeaderSection(),
                   const _HomeBodySection(),
                 ],
               ),
@@ -52,14 +52,16 @@ class _HomeHeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const _HeaderLogoSection(),
-            _HeaderButtonSection(),
-          ],
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const _HeaderLogoSection(),
+              _HeaderButtonSection(),
+            ],
+          ),
         ),
       ),
     );
@@ -209,21 +211,17 @@ class _BodyTextSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: AppColors.greyscaleDarkColor,
-              fontSize: size,
-              fontWeight: FontWeight.bold,
-              letterSpacing: -0.5,
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: AppColors.greyscaleDarkColor,
+          fontSize: size,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.5,
         ),
-      ],
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
-// import 'package:xtop_app/presentation/screens/app.dart';
+// import 'package:xtop_app/presentation/screens/auth/onboarding/onboarding.dart';
 
 void main() {
   runApp(const X_App());
@@ -16,7 +16,7 @@ class X_App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splashScreen,
       routes: AppRoutes.routes,
-      // home: const AppScreens(),
+      // home: const Onboarding(),
     );
   }
 }

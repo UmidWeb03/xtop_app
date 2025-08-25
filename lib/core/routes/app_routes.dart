@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:xtop_app/presentation/screens/app.dart';
 import 'package:xtop_app/presentation/screens/splash/splash_screen.dart';
 
-// Auth screens
+// Onboarding screen
+import 'package:xtop_app/presentation/screens/auth/onboarding/onboarding.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/welcome_screen.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/first_onboarding_screen.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/second_onboarding_screen.dart';
+// Auth screens
 import 'package:xtop_app/presentation/screens/auth/sign_in/sign_in.dart';
+import 'package:xtop_app/presentation/screens/auth/auth_screen.dart';
 
 // Main app screens
 import 'package:xtop_app/presentation/screens/home/home_screen.dart';
@@ -22,11 +25,15 @@ class AppRoutes {
 
   // Core routes
   static const String splashScreen = '/';
-  static const String welcomeScreen = '/welcome';
 
-  // Auth routes
+  // Onboarding routes
+  static const String onboardingScreen = '';
+  static const String welcomeScreen = '/welcome';
   static const String firstOnboardingScreen = '/onboarding/first';
   static const String secondOnboardingScreen = '/onboarding/second';
+
+  // Auth routes
+  static const String authScreen = '/auth';
   static const String signInScreen = '/auth/sign-in';
 
   // Main app routes
@@ -41,11 +48,14 @@ class AppRoutes {
     // Core routes
     splashScreen: (context) => const SplashScreen(),
 
-    // Auth routes
+    // Onboarding routes
+    onboardingScreen: (context) => const Onboarding(),
     firstOnboardingScreen: (context) => const FirstOnboardingScreen(),
     secondOnboardingScreen: (context) => const SecondOnboardingScreen(),
     welcomeScreen: (context) => const WelcomeScreen(),
 
+    // Auth routes
+    authScreen: (context) => const AuthScreen(),
     signInScreen: (context) => const SignInScreen(),
 
     // Main app routes
