@@ -52,16 +52,15 @@ class _HomeHeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const _HeaderLogoSection(),
-              _HeaderButtonSection(),
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const _HeaderLogoSection(),
+            // const SizedBox(width: 61),
+            _HeaderButtonSection(),
+          ],
         ),
       ),
     );
@@ -76,7 +75,7 @@ class _HeaderLogoSection extends StatelessWidget {
     return Image.asset(
       'assets/images/x_logo.png',
       width: 107,
-      height: 50,
+      // height: 50,
       fit: BoxFit.cover,
     );
   }
@@ -98,7 +97,7 @@ class _HeaderButtonSection extends StatelessWidget {
   }
 
   void _handleLoginPressed(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.signInScreen);
+    Navigator.pushNamed(context, AppRoutes.authScreen);
   }
 }
 
