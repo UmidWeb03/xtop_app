@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Core screens
 import 'package:xtop_app/presentation/screens/app.dart';
+import 'package:xtop_app/presentation/screens/like/like_screen.dart';
 import 'package:xtop_app/presentation/screens/splash/splash_screen.dart';
 
 // Onboarding screen
@@ -15,7 +16,7 @@ import 'package:xtop_app/presentation/screens/auth/auth_screen.dart';
 
 // Main app screens
 import 'package:xtop_app/presentation/screens/home/home_screen.dart';
-import 'package:xtop_app/presentation/screens/category/category_screen.dart';
+import 'package:xtop_app/presentation/screens/categorie/categorie_screen.dart';
 import 'package:xtop_app/presentation/screens/cart/cart_screen.dart';
 import 'package:xtop_app/presentation/screens/location/location_screen.dart';
 import 'package:xtop_app/presentation/screens/news/news_screen.dart';
@@ -40,6 +41,7 @@ class AppRoutes {
   static const String appScreen = '/app';
   static const String homeScreen = '/home';
   static const String categoryScreen = '/category';
+  static const String likeScreen = '/like';
   static const String cartScreen = '/cart';
   static const String locationScreen = '/location';
   static const String newsScreen = '/news';
@@ -59,9 +61,10 @@ class AppRoutes {
     signInScreen: (context) => const SignInScreen(),
 
     // Main app routes
-    appScreen: (context) => const AppScreens(),
+    appScreen: (context) => const AppScreens( ),
     homeScreen: (context) => const HomeScreen(),
     categoryScreen: (context) => const CategoryScreen(),
+    likeScreen: (context) => const LikeScreen(),
     cartScreen: (context) => const CartScreen(),
     locationScreen: (context) => const LocationScreen(),
     newsScreen: (context) => const NewsScreen(),

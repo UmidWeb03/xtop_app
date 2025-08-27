@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/presentation/screens/cart/cart_screen.dart';
-import 'package:xtop_app/presentation/screens/category/category_screen.dart';
+import 'package:xtop_app/presentation/screens/categorie/categorie_screen.dart';
 import 'package:xtop_app/presentation/screens/home/home_screen.dart';
 import 'package:xtop_app/presentation/screens/location/location_screen.dart';
 import 'package:xtop_app/presentation/screens/news/news_screen.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/welcome_screen.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/first_onboarding_screen.dart';

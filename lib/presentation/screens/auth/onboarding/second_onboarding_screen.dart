@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/screens/auth/onboarding/widgets/slider_dot.dart';
 
 class SecondOnboardingScreen extends StatelessWidget {

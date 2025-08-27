@@ -3,8 +3,8 @@ import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/screens/app.dart';
 import 'package:xtop_app/presentation/widgets/app_button.dart';
 
-class NewsScreen extends StatelessWidget {
-  const NewsScreen({super.key});
+class CategoryScreen extends StatelessWidget {
+  const CategoryScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _AppBarTextSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Yangiliklar',
+      'Maxsulotlar',
       style: TextStyle(
         color: AppColors.greyscaleDarkColor,
         fontSize: 20,
@@ -101,7 +101,7 @@ class _BodyImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/news.png',
+      'assets/images/product.png',
       width: 270,
       height: 238,
       fit: BoxFit.cover,

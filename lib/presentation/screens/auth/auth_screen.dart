@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
+import 'package:xtop_app/presentation/screens/app.dart';
 import 'package:xtop_app/presentation/screens/auth/widgets/auth_button.dart';
 import 'package:xtop_app/presentation/widgets/app_button.dart';
 
@@ -14,10 +14,10 @@ class AuthScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: AppColors.secondaryColor,
+        padding: const EdgeInsets.all(24),
         child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: CustomScrollView(
+            slivers: [
               _AuthBodySection(),
             ],
           ),
@@ -32,65 +32,66 @@ class _AuthBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 840,
-      padding: const EdgeInsets.all(24),
-      decoration: const BoxDecoration(
-        // color: Colors.red,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _BodyImageSection(),
-          const SizedBox(height: 51.75),
-          _BodyTextSection(
-            text: "Bizga qo'shiling👋🏻",
-            size: 39,
-            fontWeight: FontWeight.bold,
-            color: AppColors.greyscaleDarkColor,
-          ),
-          const SizedBox(height: 51.75),
-          _BodyButtonSection(
-            navigate: () => _googleContinuePressed(context),
-            icon: 'assets/images/google_icon.png',
-            lable: 'Google bilan davom etish',
-            textColor: AppColors.greyscaleDarkColor,
-            backgroundColor: AppColors.secondaryColor,
-          ),
-          const SizedBox(height: 16),
-          _BodyButtonSection(
-            navigate: () => _appleContinuePressed(context),
-            icon: 'assets/images/apple_icon.png',
-            lable: 'Apple bilan Davom etish',
-            textColor: AppColors.greyscaleDarkColor,
-            backgroundColor: AppColors.secondaryColor,
-          ),
-          const SizedBox(height: 24),
-          _BodyDividerLineSection(),
-          const SizedBox(height: 24),
-          _ButtonSection(
-            navigate: () => _phoneNumberContinuePressed(context),
-            lable: 'Telefon raqam orqli krish',
-          ),
-          const SizedBox(height: 51.75),
-          _BodyBottomNavigateSection(),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        width: double.infinity,
+        // height: 500,
+        decoration: const BoxDecoration(
+          // color: Colors.blue,
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _BodyImageSection(),
+            const SizedBox(height: 51.75),
+            _BodyTextSection(
+              text: "Bizga qo'shiling👋🏻",
+              size: 39,
+              fontWeight: FontWeight.bold,
+              color: AppColors.greyscaleDarkColor,
+            ),
+            const SizedBox(height: 51.75),
+            _BodyButtonSection(
+              navigate: () => _googleContinuePressed(context),
+              icon: 'assets/images/google_icon.png',
+              lable: 'Google bilan davom etish',
+              textColor: AppColors.greyscaleDarkColor,
+              backgroundColor: AppColors.secondaryColor,
+            ),
+            const SizedBox(height: 16),
+            _BodyButtonSection(
+              navigate: () => _appleContinuePressed(context),
+              icon: 'assets/images/apple_icon.png',
+              lable: 'Apple bilan Davom etish',
+              textColor: AppColors.greyscaleDarkColor,
+              backgroundColor: AppColors.secondaryColor,
+            ),
+            const SizedBox(height: 24),
+            _BodyDividerLineSection(),
+            const SizedBox(height: 24),
+            _ButtonSection(
+              navigate: () => _phoneNumberContinuePressed(context),
+              lable: 'Telefon raqam orqli krish',
+            ),
+            const SizedBox(height: 51.75),
+            _BodyBottomNavigateSection(),
+          ],
+        ),
       ),
     );
   }
 
   void _googleContinuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.appScreen);
+    appScreensKey.currentState?.goToAuthScreen();
   }
 
   void _appleContinuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.appScreen);
+    appScreensKey.currentState?.goToAuthScreen();
   }
 
   void _phoneNumberContinuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.appScreen);
+    appScreensKey.currentState?.goToLikeScreen();
   }
 }
 
@@ -242,7 +243,7 @@ class _TextButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => _signInContinuePressed(context),
+      onPressed: () => _continuePressed(context),
       child: Text(
         "Ro'yxatdan o'tish",
         style: TextStyle(
@@ -257,7 +258,7 @@ class _TextButtonSection extends StatelessWidget {
     );
   }
 
-  void _signInContinuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.signInScreen);
+  void _continuePressed(BuildContext context) {
+    appScreensKey.currentState?.goToLikeScreen();
   }
 }

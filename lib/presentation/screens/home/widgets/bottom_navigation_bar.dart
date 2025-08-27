@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final ValueChanged<int> onTap;

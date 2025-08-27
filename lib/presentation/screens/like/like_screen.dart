@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
+
+import 'package:xtop_app/presentation/screens/app.dart';
 import 'package:xtop_app/presentation/widgets/app_button.dart';
 
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+class LikeScreen extends StatelessWidget {
+  const LikeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class _AppBarTextSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Maxsulotlar',
+      'Like',
       style: TextStyle(
         color: AppColors.greyscaleDarkColor,
         fontSize: 20,
@@ -101,7 +103,7 @@ class _BodyImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/product.png',
+      'assets/images/empty.png',
       width: 270,
       height: 238,
       fit: BoxFit.cover,
@@ -142,6 +144,6 @@ class _BodyButtonSection extends StatelessWidget {
   }
 
   void _continuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.authScreen);
+    appScreensKey.currentState?.goToAuthScreen();
   }
 }

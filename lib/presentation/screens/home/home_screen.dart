@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:xtop_app/core/models/product_categorie.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/data/product_categorie_data.dart';
+import 'package:xtop_app/data/product_data.dart';
+import 'package:xtop_app/presentation/screens/app.dart';
+import 'package:xtop_app/presentation/screens/home/widgets/home_bottom.dart';
 import 'package:xtop_app/presentation/screens/home/widgets/search_action_bottom.dart';
 import 'package:xtop_app/presentation/widgets/app_button.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
+import 'package:xtop_app/core/models/product.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,12 +59,11 @@ class _HomeHeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
+        padding: const EdgeInsets.all(24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const _HeaderLogoSection(),
-            // const SizedBox(width: 61),
             _HeaderButtonSection(),
           ],
         ),
@@ -75,7 +80,6 @@ class _HeaderLogoSection extends StatelessWidget {
     return Image.asset(
       'assets/images/x_logo.png',
       width: 107,
-      // height: 50,
       fit: BoxFit.cover,
     );
   }
@@ -109,7 +113,6 @@ class _HomeBodySection extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(top: 20),
         decoration: BoxDecoration(
           color: AppColors.secondaryColor,
           borderRadius: BorderRadius.only(
@@ -120,23 +123,41 @@ class _HomeBodySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _BodySearchSection(),
-            _BodyTextSection(text: 'Maxsus takliflar', size: 20),
-            _BodyBannerSection(),
-            _BodyBannerSection(),
-            _BodyBannerSection(),
-            _BodyBannerSection(),
+            const _BodySearchSection(),
+            const _BodyTextSection(
+              text: 'Maxsus takliflar',
+              size: 20,
+              padding: EdgeInsets.only(left: 24, bottom: 24),
+            ),
+            const _BodyBannerSection(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _BodyTextSection(text: 'Eng mashhurlari', size: 20),
-                _BodyTextSection(text: 'Barchasi', size: 15),
+                const _BodyTextSection(
+                  text: 'Eng mashhurlari',
+                  size: 20,
+                  padding: EdgeInsets.only(left: 24, bottom: 24, top: 24),
+                ),
+                GestureDetector(
+                  onTap: () => _handleLoginPressed(context),
+                  child: const _BodyTextSection(
+                    text: 'Barchasi',
+                    size: 15,
+                    padding: EdgeInsets.only(right: 24, bottom: 24, top: 24),
+                  ),
+                ),
               ],
-            )
+            ),
+            const _BodyCategorieSection(),
+            const _BodyCategorieViewSection(),
           ],
         ),
       ),
     );
+  }
+
+  void _handleLoginPressed(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.authScreen);
   }
 }
 
@@ -146,7 +167,7 @@ class _BodySearchSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+      padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
       child: TextField(
         decoration: InputDecoration(
           hintText: 'Mahsulot qidirish...',
@@ -205,20 +226,24 @@ class _BodySearchSection extends StatelessWidget {
 class _BodyTextSection extends StatelessWidget {
   final String text;
   final double size;
+  final EdgeInsets padding;
 
-  const _BodyTextSection({required this.text, required this.size});
+  const _BodyTextSection({
+    required this.text,
+    required this.size,
+    required this.padding,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: padding,
       child: Text(
         text,
         style: TextStyle(
           color: AppColors.greyscaleDarkColor,
           fontSize: size,
           fontWeight: FontWeight.bold,
-          letterSpacing: 0.5,
         ),
       ),
     );
@@ -236,6 +261,323 @@ class _BodyBannerSection extends StatelessWidget {
       child: Image.asset(
         'assets/images/home_banner.png',
         fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
+class _BodyCategorieSection extends StatefulWidget {
+  const _BodyCategorieSection();
+
+  @override
+  State<_BodyCategorieSection> createState() => _BodyCategorieSectionState();
+}
+
+class _BodyCategorieSectionState extends State<_BodyCategorieSection> {
+  int selectedIndex = -1;
+
+  final productCategories = ProductCategorieData.productCategorie;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 38,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: productCategories.length,
+        itemBuilder: (context, index) {
+          final isSelected = selectedIndex == index;
+          final productCategorie =
+              productCategories[index % productCategories.length];
+          return Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: _CategorieButtonSection(
+              productCategorie: productCategorie,
+              onPressed: () {
+                setState(() {
+                  selectedIndex = selectedIndex == index ? -1 : index;
+                });
+              },
+              textColor: isSelected
+                  ? AppColors.secondaryColor
+                  : AppColors.greyscaleDarkColor,
+              backgroundColor: isSelected
+                  ? AppColors.primaryColor
+                  : AppColors.secondaryColor,
+            ),
+          );
+          // return null;
+        },
+      ),
+    );
+  }
+}
+
+class _CategorieButtonSection extends StatelessWidget {
+  final ProductCategorie productCategorie;
+  final VoidCallback onPressed;
+  final Color textColor;
+  final Color backgroundColor;
+  const _CategorieButtonSection({
+    required this.onPressed,
+    required this.productCategorie,
+    required this.textColor,
+    required this.backgroundColor,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return HomeButton(
+      onPressed: onPressed,
+      text: productCategorie.name,
+      border: BorderSide(
+        width: 2,
+        color: AppColors.primaryColor,
+      ),
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+    );
+  }
+}
+
+class _BodyCategorieViewSection extends StatelessWidget {
+  const _BodyCategorieViewSection();
+
+  final products = ProductData.products;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final screenWidth = constraints.maxWidth;
+          final crossAxisCount = screenWidth > 600 ? 3 : 2;
+          final itemWidth =
+              (screenWidth - (crossAxisCount - 1) * 16) / crossAxisCount;
+          final aspectRatio = itemWidth / 315; // height/width ratio
+
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 24,
+              childAspectRatio: aspectRatio,
+            ),
+            itemCount: products.length, // Test uchun ko'paytirdim
+            itemBuilder: (context, index) {
+              final product = products[index % products.length];
+              return _ProductCardSection(product: product);
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _ProductCardSection extends StatelessWidget {
+  final Product product;
+
+  const _ProductCardSection({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _goToCategorieScreen(context),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _ProductImageSection(product: product),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 182,
+                      height: 22,
+                      child: Text(
+                        product.name,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.greyscaleDarkColor,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    _ProductRatingSetion(product: product),
+                    const SizedBox(height: 8),
+                    _ProductPriceSection(product: product),
+                    const SizedBox(height: 8),
+                    Text(
+                      "${product.discountedPrice.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]} ')} so'm",
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.greyscaleDarkColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _goToCategorieScreen(BuildContext context) {
+    appScreensKey.currentState?.goToCategorieScreen();
+  }
+}
+
+class _ProductImageSection extends StatelessWidget {
+  final Product product;
+
+  const _ProductImageSection({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 182,
+      width: 182,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              product.imagePath,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            top: 16,
+            right: 16,
+            child: GestureDetector(
+              onTap: () => _goToLikeScreen(context),
+              child: Image.asset(
+                'assets/images/like.png',
+                width: 28,
+                height: 28,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _goToLikeScreen(BuildContext context) {
+    appScreensKey.currentState?.goToLikeScreen();
+  }
+}
+
+class _ProductRatingSetion extends StatelessWidget {
+  final Product product;
+
+  const _ProductRatingSetion({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Image.asset(
+          'assets/images/star.png',
+          width: 16,
+          height: 16,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          product.rating.toString(),
+          style: TextStyle(
+            fontSize: 14,
+            color: AppColors.accentColor,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          product.line.toString(),
+          style: TextStyle(
+            fontSize: 14,
+            color: AppColors.accentColor,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          decoration: BoxDecoration(
+            color: AppColors.searchColor,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            '${product.discountPercent}%',
+            style: const TextStyle(
+              fontSize: 12,
+              color: AppColors.greyscaleDarkColor,
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Image.asset(
+          product.logoPath,
+          width: 24,
+          height: 24,
+        ),
+      ],
+    );
+  }
+}
+
+class _ProductPriceSection extends StatelessWidget {
+  final Product product;
+
+  const _ProductPriceSection({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: const Color(0xFFDBBDF2),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            product.originalPrice.toStringAsFixed(0),
+            style: const TextStyle(
+              fontSize: 12,
+              color: AppColors.greyscaleDarkColor,
+              decoration: TextDecoration.lineThrough,
+            ),
+          ),
+        ],
       ),
     );
   }

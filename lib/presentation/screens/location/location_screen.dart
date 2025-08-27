@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/constants/app_constants.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
+import 'package:xtop_app/presentation/screens/app.dart';
 import 'package:xtop_app/presentation/widgets/app_button.dart';
 
 class LocationScreen extends StatelessWidget {
@@ -151,6 +151,6 @@ class _BodyButtonSection extends StatelessWidget {
   }
 
   void _continuePressed(BuildContext context) {
-    AppRoutes.navigateTo(context, AppRoutes.authScreen);
+    appScreensKey.currentState?.goToAuthScreen();
   }
 }
