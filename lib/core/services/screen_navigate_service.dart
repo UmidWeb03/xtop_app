@@ -1,0 +1,26 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/core/services/local_storage.dart';
+
+class SplashScreenNavigateService {
+  Future<void> checkNavigateSplash(BuildContext context) async {
+    /// 2-3 soniya splashScreen ko'rsatadi
+    await Future.delayed(const Duration(seconds: 2));
+
+    final isFirstLaunch = await AppLocalStorage.isFirstLaunch();
+
+    if (!isFirstLaunch) {
+      // birinchi marta ilovaga kirilganda: Splash'dan WelcomeScreen'ga o'tadi
+      context.goNamed('onboarding');
+
+      /// Ikkinchi onboarding tugagach first launch ni false qilib HomeScreen'ga o'tadi
+      await AppLocalStorage.setFirstLaunchDone();
+    } else {
+      // ikkinchi marta ilovaga kirilganda: Splash'dan HomeScreen'ga o'tadi
+      context.go(AppRoutes.app);
+    }
+  }
+}
