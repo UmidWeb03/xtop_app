@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 
-class AppButton extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final String text;
+  final bool isLoading;
+  final String label;
   final double? width;
   final double? height;
   final Color? backgroundColor;
@@ -11,10 +12,11 @@ class AppButton extends StatelessWidget {
   final BorderSide? border;
   final FontWeight? fontWeight;
 
-  const AppButton({
+  const PrimaryButton({
     super.key,
     required this.onPressed,
-    required this.text,
+    this.isLoading = false,
+    required this.label,
     this.width,
     this.height,
     this.backgroundColor,
@@ -26,23 +28,32 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(width ?? 0, height ?? 0),
+        side: border ?? BorderSide.none,
+        minimumSize: Size(width ?? 380, height ?? 58),
         backgroundColor: backgroundColor ?? AppColors.primaryColor,
         foregroundColor: textColor ?? AppColors.secondaryColor,
-        side: border,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: fontWeight ?? FontWeight.bold,
-        ),
-      ),
+      onPressed: isLoading ? null : onPressed,
+      child: isLoading
+          ? SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    textColor ?? AppColors.secondaryColor),
+              ),
+            )
+          : Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: fontWeight ?? FontWeight.bold,
+              ),
+            ),
     );
   }
 }

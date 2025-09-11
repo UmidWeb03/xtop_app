@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/welcome_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/first_onboarding_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/second_onboarding_screen.dart';
-import 'package:xtop_app/presentation/atoms/buttons/app_button.dart';
+import 'package:xtop_app/core/services/local_storage.dart';
+import 'package:xtop_app/presentation/pages/onboarding/welcome_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/first_onboarding_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/second_onboarding_screen.dart';
+import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -23,25 +24,25 @@ class _OnboardingState extends State<Onboarding> {
     SecondOnboardingScreen(),
   ];
 
-  void nextScreen() {
+  Future<void> nextScreen() async {
     if (currentIndex < screens.length - 1) {
       setState(() => currentIndex++);
     } else {
-      context.go(AppRoutes.home);
+      await AppLocalStorage.setOnboardingCompleted();
+      if (context.mounted) context.go(AppRoutes.home);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final isLastScreen = currentIndex == screens.length - 1;
+    final color =
+        currentIndex == 0 ? AppColors.secondaryColor : AppColors.primaryColor;
 
     return Scaffold(
       body: Stack(
         children: [
-          IndexedStack(
-            index: currentIndex,
-            children: screens,
-          ),
+          IndexedStack(index: currentIndex, children: screens),
           Positioned(
             left: 24,
             right: 24,
@@ -61,26 +62,17 @@ class _OnboardingState extends State<Onboarding> {
                         height: 8,
                         decoration: BoxDecoration(
                           color: currentIndex == index
-                              ? (currentIndex == 0
-                                  ? AppColors.secondaryColor
-                                  : AppColors
-                                      .primaryColor) // faol indikator rangi
-                              : (currentIndex == 0
-                                  ? AppColors.secondaryColor.withOpacity(0.5)
-                                  : AppColors.primaryColor.withOpacity(0.5)),
+                              ? color
+                              : color.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
-                  AppButton(
+                  PrimaryButton(
                     onPressed: nextScreen,
-                    text: isLastScreen ? "Boshlash" : "Keyingisi",
-                    width: double.infinity,
-                    height: 56,
-                    backgroundColor: AppColors.primaryColor,
-                    textColor: AppColors.secondaryColor,
+                    label: isLastScreen ? "Boshlash" : "Keyingisi",
                   ),
                 ],
               ),

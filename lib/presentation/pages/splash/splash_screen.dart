@@ -11,14 +11,13 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  final _navigationService = SplashScreenNavigateService();
-
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
 
-    _navigationService.checkNavigateSplash(context);
+    SplashScreenNavigateService.checkNavigateSplash(context);
   }
 
   @override

@@ -5,7 +5,7 @@ class AppText extends StatelessWidget {
   final TextStyle? style;
   final Color color;
   final double size;
-  final FontWeight font;
+  final FontWeight? font;
   final double? height;
   final TextAlign? align;
   final EdgeInsets? padding;
@@ -15,7 +15,7 @@ class AppText extends StatelessWidget {
     this.style,
     required this.color,
     required this.size,
-    required this.font,
+    this.font,
     this.height,
     this.align,
     this.padding,

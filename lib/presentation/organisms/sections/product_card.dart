@@ -110,7 +110,7 @@ class _ProductImageSection extends StatelessWidget {
             top: 16,
             right: 16,
             child: GestureDetector(
-              onTap: () => context.push(AppRoutes.cart),
+              onTap: () => context.go(AppRoutes.cart),
               child: Image.asset(
                 'assets/images/like.png',
                 width: 28,

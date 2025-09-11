@@ -12,4 +12,8 @@ class AppColors {
   static const greyscaleDarkColor = Color(0xFF0D0F12);
 
   static const searchColor = Color.fromARGB(128, 189, 189, 189);
+
+  static const primaryInputColor = Color(0xFF9E9E9E);
+
+  static const secondaryInputColor = Color(0xFFFAFAFA);
 }

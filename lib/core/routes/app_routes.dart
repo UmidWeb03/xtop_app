@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_email_screen.dart';
 
 // Core screens
-import 'package:xtop_app/presentation/app.dart';
+import 'package:xtop_app/presentation/templates/app.dart';
 import 'package:xtop_app/presentation/pages/splash/splash_screen.dart';
 
 // Onboarding screens
-import 'package:xtop_app/presentation/pages/auth/onboarding/onboarding.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/welcome_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/first_onboarding_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/onboarding/second_onboarding_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/onboarding.dart';
+import 'package:xtop_app/presentation/pages/onboarding/welcome_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/first_onboarding_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/second_onboarding_screen.dart';
 
 // Auth screens
-import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in.dart';
 import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/forgot_password_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_phone_screen.dart';
 
 // Navigation screen
 import 'package:xtop_app/presentation/pages/home/home_screen.dart';
@@ -33,11 +36,10 @@ class AppRoutes {
 
   // core screens
   static const String splash = '/';
-  static const String app = '/app';
 
   // onboarding screens
   static const String onboarding = '/onboarding';
-  static const String welcome = '/welcome';
+  static const String welcome = '/onboarding/welcome';
   static const String firstOnboarding = '/onboarding/first';
   static const String secondOnboarding = '/onboarding/second';
 
@@ -45,6 +47,12 @@ class AppRoutes {
   static const String auth = '/auth';
   static const String signIn = '/auth/sign-in';
   static const String signUp = '/auth/sign-up';
+  static const String forgotPassword = '/auth/forgot-password';
+  static const String forgotPhoneCode = '/auth/forgot-password/phone-code';
+  static const String forgotEmailCode = '/auth/forgot-password/email-code';
+  static const String resetPassword = '/auth/reset-password';
+  static const String phoneLogin = '/auth/phone-login';
+  static const String verifyCode = '/auth/verify-code';
 
   // navigation screens
   static const String home = '/home';
@@ -127,17 +135,32 @@ final GoRouter appRouter = GoRouter(
       name: 'auth',
       builder: (context, state) => const AuthScreen(),
       routes: [
-        // Kirish sahifasi
         GoRoute(
-          path: 'sign-in', // /auth/sign-in
+          path: 'sign-in',
           name: 'sign_in',
           builder: (context, state) => const SignInScreen(),
         ),
-
         GoRoute(
-          path: 'sign-up', // /auth/sign-up
+          path: 'sign-up',
           name: 'sign_up',
           builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
+          path: 'forgot-password',
+          name: 'forgot_password',
+          builder: (context, state) => const ForgotPasswordScreen(),
+          routes: [
+            GoRoute(
+              path: 'phone-code',
+              name: 'forgot-phone-code',
+              builder: (context, state) => const VerifyPhoneCodeScreen(),
+            ),
+            GoRoute(
+              path: 'email-code',
+              name: 'forgot_email_code',
+              builder: (context, state) => const VerifyEmailCodeScreen(),
+            ),
+          ],
         ),
       ],
     ),
@@ -227,14 +250,4 @@ class AppNavigation {
         pathParameters: pathParameters ?? {},
         queryParameters: queryParameters ?? {});
   }
-
-  // // Sahifani almashtirish
-  // static void pushReplacement(BuildContext context, String path) {
-  //   context.pushReplacement(path);
-  // }
-
-  // // Barcha sahifalarni tozalab yangi sahifaga o'tish
-  // static void pushAndRemoveUntil(BuildContext context, String path) {
-  //   context.go(path);
-  // }
 }

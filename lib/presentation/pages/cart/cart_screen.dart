@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
-import 'package:xtop_app/presentation/atoms/buttons/app_button.dart';
+import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -133,14 +133,9 @@ class _BodyButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppButton(
-      onPressed: () => context.go(AppRoutes.auth),
-      text: 'Davom etish',
-      width: double.infinity,
-      height: 56,
-      backgroundColor: AppColors.primaryColor,
-      textColor: AppColors.secondaryColor,
+    return PrimaryButton(
+      onPressed: () => context.push(AppRoutes.auth),
+      label: 'Davom etish',
     );
   }
-
 }

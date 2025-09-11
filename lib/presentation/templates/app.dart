@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/data/models/navigation_item.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/bottom_navigation_bar.dart';
 
 final GlobalKey<_AppScreensState> appScreensKey = GlobalKey<_AppScreensState>();
@@ -23,22 +21,6 @@ class _AppScreensState extends State<AppScreens> {
         _selectedIndex = index;
       });
     }
-  }
-
-  void goToLikeScreen() {
-    _onItemTapped(2);
-  }
-
-  void goToCategorieScreen() {
-    _onItemTapped(1);
-  }
-
-  // void goTOHomeScreen() {
-  //   AppRoutes.navigateTo(context, AppRoutes.appScreen);
-  // }
-
-  void goToAuthScreen() {
-    context.go(AppRoutes.auth);
   }
 
   @override

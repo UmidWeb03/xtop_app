@@ -8,11 +8,15 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Sign Up Screen',
@@ -20,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.go(AppRoutes.app);
+                  context.go(AppRoutes.home);
                 },
                 child: Text('Go to Home'),
               )

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
-// import 'package:xtop_app/core/routes/app_routes.dart';
-// import 'package:xtop_app/presentation/app.dart';
 
 void main() {
   runApp(const XTop_App());
@@ -16,7 +15,7 @@ class XTop_App extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      // home: const SecondOnboardingScreen(),
+      // home: const AuthScreen(),
     );
   }
 }

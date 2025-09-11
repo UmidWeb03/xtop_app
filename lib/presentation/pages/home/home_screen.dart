@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/data/repositories/product_name_data.dart';
 import 'package:xtop_app/data/repositories/product_data.dart';
-import 'package:xtop_app/presentation/atoms/buttons/app_button.dart';
+import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/atoms/buttons/search_button.dart';
 import 'package:xtop_app/presentation/atoms/images/app_background_img.dart';
@@ -119,11 +119,11 @@ class _HomeBodySection extends StatelessWidget {
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 24,
-                childAspectRatio: 182 / 357,
+                childAspectRatio: 182 / 300,
               ),
               itemCount: products.length,
               itemBuilder: (context, index) {
@@ -168,13 +168,15 @@ class _BodyCategorieSectionState extends State<_BodyCategorieSection> {
               left: index == 0 ? 24 : 0,
               right: index == productNames.length - 1 ? 12 : 12,
             ),
-            child: AppButton(
+            child: PrimaryButton(
               onPressed: () {
                 setState(() {
                   selectedIndex = selectedIndex == index ? -1 : index;
                 });
               },
-              text: productName.name,
+              width: 100,
+              height: 38,
+              label: productName.name,
               border: BorderSide(
                 width: 2,
                 color: AppColors.primaryColor,
