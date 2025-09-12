@@ -18,13 +18,12 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        backgroundColor: AppColors.secondaryColor,
       ),
       body: Container(
         width: double.infinity,
-        height: double.infinity,
-        color: Colors.white,
+        color: AppColors.secondaryColor,
         padding: const EdgeInsets.only(left: 24, right: 24),
         alignment: Alignment.center,
         child: SafeArea(
@@ -39,7 +38,7 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 39),
               const AppText(
                 text: 'Hisobga kirish',
-                color: Colors.black,
+                color: AppColors.greyscaleDarkColor,
                 size: 30,
                 font: FontWeight.bold,
               ),
@@ -69,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                 onTap: () => context.push(AppRoutes.forgotPassword),
                 child: const AppText(
                   text: 'Parolni unutdingizmi?',
-                  color: Colors.black,
+                  color: AppColors.greyscaleDarkColor,
                   size: 17,
                   font: FontWeight.w500,
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/forgot_password_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_email_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_phone_screen.dart';
 
 // Core screens
 import 'package:xtop_app/presentation/templates/app.dart';
@@ -16,8 +18,8 @@ import 'package:xtop_app/presentation/pages/onboarding/second_onboarding_screen.
 import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/forgot_password_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_phone_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/phone_login/phone_login_code_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/phone_login/phone_number_login_screen.dart';
 
 // Navigation screen
 import 'package:xtop_app/presentation/pages/home/home_screen.dart';
@@ -47,12 +49,16 @@ class AppRoutes {
   static const String auth = '/auth';
   static const String signIn = '/auth/sign-in';
   static const String signUp = '/auth/sign-up';
-  static const String forgotPassword = '/auth/forgot-password';
-  static const String forgotPhoneCode = '/auth/forgot-password/phone-code';
-  static const String forgotEmailCode = '/auth/forgot-password/email-code';
-  static const String resetPassword = '/auth/reset-password';
+  static const String forgotPassword = '/auth/sign-in/forgot-password';
+  static const String forgotPhoneCode =
+      '/auth/sign-in/forgot-password/phone-code';
+  static const String forgotEmailCode =
+      '/auth/sign-in/forgot-password/email-code';
   static const String phoneLogin = '/auth/phone-login';
-  static const String verifyCode = '/auth/verify-code';
+  static const String verifyCode = '/auth/phone-login/verify-code';
+  static const String signUpPhoneLogin = '/auth/sign-up/phone-login';
+  static const String signUpVerifyCode =
+      '/auth/sign-up/phone-login/verify-code';
 
   // navigation screens
   static const String home = '/home';
@@ -110,7 +116,7 @@ final GoRouter appRouter = GoRouter(
       routes: [
         // Xush kelibsiz sahifasi
         GoRoute(
-          path: AppRoutes.welcome,
+          path: 'welcome', // /onboarding/welcome
           name: 'welcome',
           builder: (context, state) => const WelcomeScreen(),
         ),
@@ -139,26 +145,54 @@ final GoRouter appRouter = GoRouter(
           path: 'sign-in',
           name: 'sign_in',
           builder: (context, state) => const SignInScreen(),
+          routes: [
+            GoRoute(
+              path: 'forgot-password',
+              name: 'forgot_password',
+              builder: (context, state) => const ForgotPasswordScreen(),
+              routes: [
+                GoRoute(
+                  path: 'phone-code',
+                  name: 'forgot_phone_code',
+                  builder: (context, state) => const VerifyPhoneCodeScreen(),
+                ),
+                GoRoute(
+                  path: 'email-code',
+                  name: 'forgot_email_code',
+                  builder: (context, state) => const VerifyEmailCodeScreen(),
+                ),
+              ],
+            ),
+          ],
         ),
         GoRoute(
           path: 'sign-up',
           name: 'sign_up',
           builder: (context, state) => const SignUpScreen(),
-        ),
-        GoRoute(
-          path: 'forgot-password',
-          name: 'forgot_password',
-          builder: (context, state) => const ForgotPasswordScreen(),
           routes: [
             GoRoute(
-              path: 'phone-code',
-              name: 'forgot-phone-code',
-              builder: (context, state) => const VerifyPhoneCodeScreen(),
+              path: 'phone-login',
+              name: 'sign_up_phone_login',
+              builder: (context, state) => const PhoneNumberLoginScreen(),
+              routes: [
+                GoRoute(
+                  path: 'verify-code',
+                  name: 'sign_up_verify_code',
+                  builder: (context, state) => const PhoneLoginCodeScreen(),
+                ),
+              ],
             ),
+          ],
+        ),
+        GoRoute(
+          path: 'phone-login',
+          name: 'auth_phone_login',
+          builder: (context, state) => const PhoneNumberLoginScreen(),
+          routes: [
             GoRoute(
-              path: 'email-code',
-              name: 'forgot_email_code',
-              builder: (context, state) => const VerifyEmailCodeScreen(),
+              path: 'verify-code',
+              name: 'auth_verify_code',
+              builder: (context, state) => const PhoneLoginCodeScreen(),
             ),
           ],
         ),

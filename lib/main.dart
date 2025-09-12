@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 
 void main() {
@@ -15,7 +14,7 @@ class XTop_App extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      // home: const AuthScreen(),
+      // home: const PhoneNumberLoginScreen(),
     );
   }
 }

@@ -79,7 +79,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        backgroundColor: AppColors.secondaryColor,
         title: const AppText(
           text: 'Parolingizni untdingizmi',
           color: Colors.black,

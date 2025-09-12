@@ -70,7 +70,7 @@ class _AuthBodySection extends StatelessWidget {
         const SizedBox(height: 24),
         PrimaryButton(
           label: 'Telefon raqam orqli krish',
-          onPressed: () => context.push(AppRoutes.forgotPhoneCode),
+          onPressed: () => context.push(AppRoutes.phoneLogin),
           backgroundColor: AppColors.primaryColor,
           textColor: AppColors.secondaryColor,
         ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/core/services/local_storage.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
-import 'package:xtop_app/presentation/atoms/input/nuber_input.dart';
+import 'package:xtop_app/presentation/atoms/input/number_input.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
+import 'package:xtop_app/presentation/organisms/timer/timer_section.dart';
 
 class VerifyEmailCodeScreen extends StatefulWidget {
   const VerifyEmailCodeScreen({super.key});
@@ -14,7 +16,6 @@ class VerifyEmailCodeScreen extends StatefulWidget {
 }
 
 class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
-  Duration _timerDuration = const Duration(minutes: 1);
   final TextEditingController _codeController = TextEditingController();
   bool _isLoading = false;
 
@@ -24,13 +25,8 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
     super.dispose();
   }
 
-  void _restartTimer() {
-    setState(() {
-      _timerDuration = const Duration(minutes: 1);
-    });
-  }
-
-  Future<void> _showCenterMessage(String message) async {
+  Future<void> _showCenterMessage(String message,
+      {Color? backgroundColor}) async {
     if (!mounted) return;
 
     final overlay = Overlay.of(context);
@@ -42,7 +38,7 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.symmetric(horizontal: 32),
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: backgroundColor ?? Colors.red,
               borderRadius: BorderRadius.circular(12),
               boxShadow: const [
                 BoxShadow(
@@ -74,8 +70,8 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
     final code = _codeController.text.trim();
 
     // Input validation
-    if (code.isEmpty || code.length < 4) {
-      await _showCenterMessage('4 xonali kodni kiriting');
+    if (!RegExp(r'^\d{4}$').hasMatch(code)) {
+      await _showCenterMessage('4 xonali raqamli kodni kiriting');
       return;
     }
 
@@ -88,10 +84,24 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
       // Simulate API call delay
       await Future.delayed(const Duration(seconds: 1));
 
-      await AppLocalStorage.setLoginStatus(true);
+      // Simulate success/failure based on code
+      if (code == '1234') {
+        // Success case
+        await AppLocalStorage.setLoginStatus(true);
 
-      if (mounted) {
-        context.go(AppRoutes.home);
+        if (mounted) {
+          await _showCenterMessage('Muvaffaqiyatli kirish!',
+              backgroundColor: Colors.green);
+          // Small delay to show success message
+          await Future.delayed(const Duration(milliseconds: 500));
+          context.go(AppRoutes.home);
+        }
+      } else {
+        // Invalid code case
+        if (mounted) {
+          await _showCenterMessage('Noto\'g\'ri kod kiritildi');
+          _codeController.clear();
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -106,34 +116,11 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
     }
   }
 
-  Widget _buildTimer() {
-    return TweenAnimationBuilder<Duration>(
-      key: ValueKey(_timerDuration.inSeconds),
-      duration: _timerDuration,
-      tween: Tween(begin: _timerDuration, end: Duration.zero),
-      builder: (context, value, child) {
-        final seconds = value.inSeconds % 60;
-        if (seconds > 0) {
-          return AppText(
-            text: 'Kod qayta yuborildi ${seconds.toString().padLeft(2, '0')} s',
-            color: Colors.grey[600]!,
-            size: 16,
-          );
-        } else {
-          return InkWell(
-            onTap: _restartTimer,
-            borderRadius: BorderRadius.circular(8),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: AppText(
-                text: 'Qayta yuborish',
-                color: Theme.of(context).primaryColor,
-                size: 16,
-              ),
-            ),
-          );
-        }
-      },
+  void _onTimerRestart() {
+    // Show confirmation message
+    _showCenterMessage(
+      'Kod qayta yuborildi',
+      backgroundColor: Colors.blue,
     );
   }
 
@@ -141,9 +128,8 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        backgroundColor: AppColors.secondaryColor,
         title: const AppText(
           text: 'Parolingizni unutdingizmi?',
           color: Colors.black,
@@ -165,16 +151,30 @@ class _VerifyEmailCodeScreenState extends State<VerifyEmailCodeScreen> {
               size: 16,
             ),
             const SizedBox(height: 85),
-            NumberInput(
+           NumberInput(
               controller: _codeController,
-              // readOnly: _isLoading,
+              readOnly: _isLoading,
+              textInputAction: TextInputAction.done,
+              onSubmitted: (value) {
+                if (!_isLoading) {
+                  _onConfirmPressed();
+                }
+              },
             ),
             const SizedBox(height: 85),
-            _buildTimer(),
+            TimerWidget(
+              initialDuration: const Duration(seconds: 30),
+              timerText: 'Kod qayta yuborildi',
+              restartText: 'Qayta yuborish',
+              onRestartTap: _onTimerRestart,
+            ),
             const SizedBox(height: 97),
             PrimaryButton(
               label: _isLoading ? 'Tekshirilmoqda...' : 'Tasdiqlash',
-              onPressed: _isLoading ? () {} : _onConfirmPressed,
+              onPressed: () {
+                if (_isLoading) return;
+                _onConfirmPressed();
+              },
             ),
           ],
         ),

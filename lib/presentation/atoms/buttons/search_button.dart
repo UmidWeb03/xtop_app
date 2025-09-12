@@ -52,15 +52,15 @@ class SearchButton extends StatelessWidget {
             ],
           ),
           filled: true,
-          fillColor: AppColors.searchColor,
+          fillColor: AppColors.searchColor.withOpacity(0.3),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20), // bir xil radius
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(
-              color: AppColors.greyscaleColor, // bir xil rang
+              color: AppColors.greyscaleColor.withOpacity(0.3),
               width: 1,
             ),
           ),

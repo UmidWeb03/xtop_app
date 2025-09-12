@@ -4,9 +4,13 @@ import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
 class BottomTextButton extends StatelessWidget {
   final VoidCallback? onTap;
+  final String? label;
+  final String? text;
   const BottomTextButton({
     super.key,
     this.onTap,
+    this.label,
+    this.text,
   });
 
   @override
@@ -15,7 +19,7 @@ class BottomTextButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AppText(
-          text: "Hisobingiz mavjud emasmi?",
+          text: text == null ? "Agar hisobingiz bo'lmasa" : text!,
           color: AppColors.greyscaleColor,
           size: 14,
           font: FontWeight.normal,
@@ -23,16 +27,9 @@ class BottomTextButton extends StatelessWidget {
         const SizedBox(width: 10),
         GestureDetector(
           onTap: onTap,
-          // () async {
-          //   // Login muvaffaqiyatli bo'lganda
-          //   await AppLocalStorage.setLoginStatus(false);
-
-          //   if (context.mounted) {
-          //     context.go(AppRoutes.home);
-          //   }
-          // },
+       
           child: Text(
-            "Ro'yxatdan o'tish",
+            label == null ? "Ro'yxatdan o'tish" : label!,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,

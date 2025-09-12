@@ -123,7 +123,7 @@ class _HomeBodySection extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 24,
-                childAspectRatio: 182 / 300,
+                childAspectRatio: 180 / 350,
               ),
               itemCount: products.length,
               itemBuilder: (context, index) {
@@ -174,7 +174,7 @@ class _BodyCategorieSectionState extends State<_BodyCategorieSection> {
                   selectedIndex = selectedIndex == index ? -1 : index;
                 });
               },
-              width: 100,
+              width: 0,
               height: 38,
               label: productName.name,
               border: BorderSide(

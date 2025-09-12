@@ -44,7 +44,7 @@ class AppInput extends StatelessWidget {
                 ),
               ),
         filled: true,
-        fillColor: AppColors.searchColor,
+        fillColor: AppColors.searchColor.withOpacity(0.2),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide.none,
