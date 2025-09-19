@@ -37,7 +37,7 @@ class PhoneNumberLoginScreen extends StatelessWidget {
               const SizedBox(height: 76),
               const AppText(
                 text: 'Kirish',
-                color: AppColors.greyscaleDarkColor,
+                color: AppColors.darkColor,
                 size: 28,
                 font: FontWeight.bold,
               ),

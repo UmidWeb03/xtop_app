@@ -42,7 +42,7 @@ class _AppBarTextSection extends StatelessWidget {
     return Text(
       'Manzil',
       style: TextStyle(
-        color: AppColors.greyscaleDarkColor,
+        color: AppColors.darkColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,

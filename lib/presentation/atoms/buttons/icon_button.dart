@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
-class PassButton extends StatefulWidget {
+class IconButtons extends StatelessWidget {
   final String img;
   final String topText;
   final String bottomText;
   final bool isSelected;
   final VoidCallback? onTap;
 
-  const PassButton({
+  const IconButtons({
     super.key,
     required this.img,
     required this.topText,
@@ -19,14 +19,9 @@ class PassButton extends StatefulWidget {
   });
 
   @override
-  State<PassButton> createState() => _PassButtonState();
-}
-
-class _PassButtonState extends State<PassButton> {
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: 128,
@@ -34,17 +29,17 @@ class _PassButtonState extends State<PassButton> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: widget.isSelected
+            color: isSelected
                 ? AppColors.primaryColor
                 : Colors.grey.withOpacity(0.3),
-            width: widget.isSelected ? 2 : 1,
+            width: isSelected ? 2 : 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: widget.isSelected
+              color: isSelected
                   ? AppColors.primaryColor.withOpacity(0.2)
                   : Colors.grey.withOpacity(0.1),
-              blurRadius: widget.isSelected ? 6 : 2,
+              blurRadius: isSelected ? 6 : 2,
               offset: const Offset(0, 2),
             ),
           ],
@@ -52,7 +47,7 @@ class _PassButtonState extends State<PassButton> {
         padding: const EdgeInsets.all(24),
         child: Row(
           children: [
-            Image.asset(widget.img),
+            Image.asset(img),
             const SizedBox(width: 20),
             Expanded(
               child: Column(
@@ -60,13 +55,13 @@ class _PassButtonState extends State<PassButton> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                    text: widget.topText,
-                    color: AppColors.primaryInputColor,
+                    text: topText,
+                    color: AppColors.inputColor,
                     size: 15,
                   ),
                   const SizedBox(height: 8),
                   AppText(
-                    text: widget.bottomText,
+                    text: bottomText,
                     color: Colors.black,
                     size: 15,
                   ),

@@ -38,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 34),
               const AppText(
                 text: 'Ro’yxatdan o’tish',
-                color: AppColors.greyscaleDarkColor,
+                color: AppColors.darkColor,
                 size: 30,
                 font: FontWeight.bold,
               ),

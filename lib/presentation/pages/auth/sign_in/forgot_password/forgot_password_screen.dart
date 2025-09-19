@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
-import 'package:xtop_app/presentation/atoms/buttons/pass_button.dart';
+import 'package:xtop_app/presentation/atoms/buttons/icon_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -110,7 +110,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 size: 15,
               ),
               const SizedBox(height: 24),
-              PassButton(
+              IconButtons(
                 img: 'assets/images/sms.png',
                 topText: 'SMS orqali',
                 bottomText: '+998 77 *** ** 99',
@@ -118,7 +118,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 onTap: () => _selectIndex(0),
               ),
               const SizedBox(height: 24),
-              PassButton(
+              IconButtons(
                 img: 'assets/images/mail.png',
                 topText: 'Email orqali',
                 bottomText: 'example@mail.com',

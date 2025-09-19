@@ -42,7 +42,7 @@ class _AppBarTextSection extends StatelessWidget {
     return Text(
       'Maxsulotlar',
       style: TextStyle(
-        color: AppColors.greyscaleDarkColor,
+        color: AppColors.darkColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,
@@ -66,6 +66,16 @@ class _AppBarIconSection extends StatelessWidget {
       ),
     );
   }
+}
+
+@override
+Widget build(BuildContext context) {
+  return Image.asset(
+    'assets/icons/search_dark.png',
+    width: 20,
+    height: 20,
+    fit: BoxFit.cover,
+  );
 }
 
 class _CartBodySection extends StatelessWidget {

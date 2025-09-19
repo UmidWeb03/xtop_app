@@ -12,68 +12,66 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go(AppRoutes.category),
+      onTap: product.onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _ProductImageSection(product: product),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                Text(
-                  product.name,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.greyscaleDarkColor,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 8),
+              Text(
+                product.name,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.darkColor,
                 ),
-                const SizedBox(height: 8),
-                product.bonusName == null
-                    ? const SizedBox.shrink()
-                    : Text(
-                        product.bonusName.toString(),
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.greyscaleDarkColor,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                const SizedBox(height: 8),
-                _ProductRatingSetion(product: product),
-                const SizedBox(height: 8),
-                _ProductPriceSection(product: product),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "${product.discountedPrice.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]} ')} so'm",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 8),
+              product.bonusName == null
+                  ? const SizedBox.shrink()
+                  : Text(
+                      product.bonusName.toString(),
                       style: const TextStyle(
                         fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.greyscaleDarkColor,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.darkColor,
                       ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Image.asset(
-                        'assets/icons/bag.png',
-                        width: 24,
-                        height: 24,
-                        fit: BoxFit.cover,
-                      ),
+              const SizedBox(height: 8),
+              _ProductRatingSetion(product: product),
+              const SizedBox(height: 8),
+              _ProductPriceSection(product: product),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${product.discountedPrice.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]} ')} so'm",
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.darkColor,
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Image.asset(
+                      'assets/icons/bag.png',
+                      width: 24,
+                      height: 24,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
@@ -165,7 +163,7 @@ class _ProductRatingSetion extends StatelessWidget {
             '${product.discountPercent}',
             style: const TextStyle(
               fontSize: 12,
-              color: AppColors.greyscaleDarkColor,
+              color: AppColors.darkColor,
             ),
           ),
         ),
@@ -202,7 +200,7 @@ class _ProductPriceSection extends StatelessWidget {
                 : 'Bonus🔥',
             style: TextStyle(
               fontSize: 12,
-              color: AppColors.greyscaleDarkColor,
+              color: AppColors.darkColor,
               decoration: product.bonus == null
                   ? TextDecoration.lineThrough
                   : TextDecoration.none,

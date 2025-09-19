@@ -20,20 +20,19 @@ class BottomTextButton extends StatelessWidget {
       children: [
         AppText(
           text: text == null ? "Agar hisobingiz bo'lmasa" : text!,
-          color: AppColors.greyscaleColor,
+          color: AppColors.greyColor,
           size: 14,
           font: FontWeight.normal,
         ),
         const SizedBox(width: 10),
         GestureDetector(
           onTap: onTap,
-       
           child: Text(
             label == null ? "Ro'yxatdan o'tish" : label!,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: AppColors.greyscaleDarkColor,
+              color: AppColors.darkColor,
               // decoration: TextDecoration.underline,
             ),
           ),

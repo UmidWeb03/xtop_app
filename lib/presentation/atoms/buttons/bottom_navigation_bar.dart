@@ -20,8 +20,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
       enableFeedback: false,
-      selectedItemColor: AppColors.greyscaleDarkColor,
-      unselectedItemColor: AppColors.greyscaleColor,
+      selectedItemColor: AppColors.darkColor,
+      unselectedItemColor: AppColors.greyColor,
       selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.bold,
       ),

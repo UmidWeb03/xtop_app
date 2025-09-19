@@ -3,8 +3,8 @@ import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/atoms/images/app_background_img.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
-class SecondOnboardingScreen extends StatelessWidget {
-  const SecondOnboardingScreen({super.key});
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class SecondOnboardingScreen extends StatelessWidget {
         child: Stack(
           children: [
             const AppBackgroundImage(
-              image: 'assets/images/second_onboarding.png',
-              height: 556,
-            ),
+                image: 'assets/images/first_onboarding.png'),
             _OnboardingContentSection(),
           ],
         ),
@@ -40,13 +38,13 @@ class _OnboardingContentSection extends StatelessWidget {
         color: AppColors.secondaryColor,
         child: Column(
           children: [
-            AppText(
-              text: "Chegirma? Bor. Arzon? Bor. X-Top? Ha, bu aynan shu!",
+            const AppText(
+              text: "Chegirmadagi har qanday mahsulot sizga yaqin.",
               color: AppColors.primaryColor,
               size: 40,
               font: FontWeight.bold,
-              align: TextAlign.center,
               height: 1.1,
+              align: TextAlign.center,
             ),
           ],
         ),

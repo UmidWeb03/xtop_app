@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/forgot_password_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_email_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_code_phone_screen.dart';
+import 'package:xtop_app/presentation/pages/products/products.dart';
+import 'package:xtop_app/presentation/pages/profile/profile.dart';
 
 // Core screens
 import 'package:xtop_app/presentation/templates/app.dart';
@@ -10,16 +9,21 @@ import 'package:xtop_app/presentation/pages/splash/splash_screen.dart';
 
 // Onboarding screens
 import 'package:xtop_app/presentation/pages/onboarding/onboarding.dart';
-import 'package:xtop_app/presentation/pages/onboarding/welcome_screen.dart';
-import 'package:xtop_app/presentation/pages/onboarding/first_onboarding_screen.dart';
-import 'package:xtop_app/presentation/pages/onboarding/second_onboarding_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/first_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/second_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/third_screen.dart';
 
 // Auth screens
 import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
-import 'package:xtop_app/presentation/pages/auth/phone_login/phone_login_code_screen.dart';
+
+import 'package:xtop_app/presentation/pages/auth/phone_login/login_code/phone_login_code_screen.dart';
 import 'package:xtop_app/presentation/pages/auth/phone_login/phone_number_login_screen.dart';
+
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/forgot_password_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_email_code/verify_code_email_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_phone_code/verify_code_phone_screen.dart';
 
 // Navigation screen
 import 'package:xtop_app/presentation/pages/home/home_screen.dart';
@@ -41,9 +45,9 @@ class AppRoutes {
 
   // onboarding screens
   static const String onboarding = '/onboarding';
-  static const String welcome = '/onboarding/welcome';
   static const String firstOnboarding = '/onboarding/first';
   static const String secondOnboarding = '/onboarding/second';
+  static const String thirdOnboarding = '/onboarding/third';
 
   // auth screens
   static const String auth = '/auth';
@@ -67,6 +71,11 @@ class AppRoutes {
   static const String location = '/location';
   static const String news = '/news';
 
+  // profile screens
+  static const String profile = '/profile';
+
+  static const String products = '/products';
+
   // app screens
   static const String search = '/search';
 }
@@ -88,7 +97,7 @@ final GoRouter appRouter = GoRouter(
           Text('Sahifa topilmadi: ${state.uri}'),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () => context.go(AppRoutes.splash),
+            onPressed: () => context.go(AppRoutes.home),
             child: const Text('Bosh sahifaga qaytish'),
           ),
         ],
@@ -108,29 +117,26 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const SplashScreen(),
     ),
 
-    // Onboarding routes - Foydalanuvchini tanishtirishda foydalaniladigan sahifalar
+    // Onboarding routes - Foydalanuvchini tanishtirishdar
     GoRoute(
       path: AppRoutes.onboarding,
       name: 'onboarding',
-      builder: (context, state) => const Onboarding(),
+      builder: (context, state) => const OnboardingScreen(),
       routes: [
-        // Xush kelibsiz sahifasi
         GoRoute(
-          path: 'welcome', // /onboarding/welcome
-          name: 'welcome',
-          builder: (context, state) => const WelcomeScreen(),
-        ),
-        // Birinchi onboarding sahifasi
-        GoRoute(
-          path: 'first', // /onboarding/first
+          path: 'first',
           name: 'first_onboarding',
-          builder: (context, state) => const FirstOnboardingScreen(),
+          builder: (context, state) => const FirstScreen(),
         ),
-        // Ikkinchi onboarding sahifasi
         GoRoute(
-          path: 'second', // /onboarding/second
+          path: 'second',
           name: 'second_onboarding',
-          builder: (context, state) => const SecondOnboardingScreen(),
+          builder: (context, state) => const SecondScreen(),
+        ),
+        GoRoute(
+          path: 'third',
+          name: 'third_onboarding',
+          builder: (context, state) => const ThirdScreen(),
         ),
       ],
     ),
@@ -154,7 +160,7 @@ final GoRouter appRouter = GoRouter(
                 GoRoute(
                   path: 'phone-code',
                   name: 'forgot_phone_code',
-                  builder: (context, state) => const VerifyPhoneCodeScreen(),
+                  builder: (context, state) => VerifyPhoneCodeScreen(),
                 ),
                 GoRoute(
                   path: 'email-code',
@@ -240,11 +246,22 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
 
-    // Qidiruv sahifasi
     GoRoute(
       path: AppRoutes.search,
       name: 'search',
       builder: (context, state) => const SearchScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.profile,
+      name: 'profile',
+      builder: (context, state) => const Profile(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.products,
+      name: 'products',
+      builder: (context, state) => const ProductsScreen(),
     ),
   ],
 );

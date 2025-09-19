@@ -5,7 +5,8 @@ class SecondaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isLoading;
   final String label;
-  final String icon;
+  final String? icon;
+  final String? icons;
   final double? width;
   final double? height;
   final Color? backgroundColor;
@@ -17,7 +18,8 @@ class SecondaryButton extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     required this.label,
-    required this.icon,
+    this.icon,
+    this.icons,
     this.width,
     this.height,
     this.backgroundColor,
@@ -35,7 +37,7 @@ class SecondaryButton extends StatelessWidget {
           color: AppColors.primaryColor.withOpacity(0.1),
         ),
         backgroundColor: backgroundColor ?? AppColors.secondaryColor,
-        foregroundColor: textColor ?? AppColors.greyscaleDarkColor,
+        foregroundColor: textColor ?? AppColors.darkColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -57,9 +59,15 @@ class SecondaryButton extends StatelessWidget {
                     right: 12.0,
                   ),
                   child: Image.asset(
-                    icon,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const SizedBox(),
+                    icons ?? 'assets/icons/done.png',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 12.0,
+                  ),
+                  child: Image.asset(
+                    icon ?? 'assets/icons/bag_light.png',
                   ),
                 ),
                 Text(

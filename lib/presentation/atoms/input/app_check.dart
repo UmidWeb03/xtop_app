@@ -38,6 +38,9 @@ class _AppCheckState extends State<AppCheck> {
           onChanged: _checkboxChanged,
           activeColor: widget.activeColor,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
         ),
         Text(
           widget.label,

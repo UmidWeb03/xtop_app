@@ -1,46 +1,48 @@
+import 'package:xtop_app/core/constants/app_strings.dart';
 import 'package:xtop_app/data/models/product_name.dart';
 
 class ProductNameData {
-  static const List<ProductName> productName = [
-    const ProductName(
+  static final List<String> names = Categories.categories_name;
+  static final List<ProductName> productName = [
+    ProductName(
       id: 1,
-      name: "Hammasi",
+      name: names[0],
     ),
-    const ProductName(
+    ProductName(
       id: 2,
-      name: "Elektronika",
+      name: names[1],
     ),
-    const ProductName(
+    ProductName(
       id: 3,
-      name: "Kiyimlar",
+      name: names[2],
     ),
-    const ProductName(
+    ProductName(
       id: 4,
-      name: "Poyabzallar",
+      name: names[3],
     ),
-    const ProductName(
+    ProductName(
       id: 5,
-      name: "Mebellar",
+      name: names[4],
     ),
-    const ProductName(
+    ProductName(
       id: 6,
-      name: "Aksessuarlar",
+      name: names[5],
     ),
-    const ProductName(
+    ProductName(
       id: 7,
-      name: "Konselyariya",
+      name: names[6],
     ),
-    const ProductName(
+    ProductName(
       id: 8,
-      name: "Sport",
+      name: names[7],
     ),
-    const ProductName(
+    ProductName(
       id: 9,
-      name: "Hobbi va ijod",
+      name: names[8],
     ),
-    const ProductName(
+    ProductName(
       id: 10,
-      name: "Bolalar uchun",
+      name: names[9],
     ),
   ];
 }

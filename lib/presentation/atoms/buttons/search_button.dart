@@ -26,7 +26,7 @@ class SearchButton extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Mahsulot qidirish...',
           hintStyle: TextStyle(
-            color: AppColors.greyscaleColor,
+            color: AppColors.greyColor,
             fontSize: 15,
           ),
           prefixIcon: AppIcons(
@@ -60,7 +60,7 @@ class SearchButton extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(
-              color: AppColors.greyscaleColor.withOpacity(0.3),
+              color: AppColors.greyColor.withOpacity(0.3),
               width: 1,
             ),
           ),

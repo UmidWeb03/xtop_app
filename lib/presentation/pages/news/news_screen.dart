@@ -44,7 +44,7 @@ class _AppBarTextSection extends StatelessWidget {
     return Text(
       'Yangiliklar',
       style: TextStyle(
-        color: AppColors.greyscaleDarkColor,
+        color: AppColors.darkColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,

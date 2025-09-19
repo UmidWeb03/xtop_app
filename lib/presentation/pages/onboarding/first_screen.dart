@@ -4,8 +4,8 @@ import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
 import 'package:xtop_app/presentation/atoms/images/app_background_img.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _WelcomeContentSection extends StatelessWidget {
         end: Alignment.bottomCenter,
         colors: [
           Colors.transparent,
-          AppColors.greyscaleDarkColor.withOpacity(0.7),
+          AppColors.darkColor.withOpacity(0.7),
           AppColors.accentColor.withOpacity(0.7),
         ],
         stops: const [0.0, 0.3, 1.0],

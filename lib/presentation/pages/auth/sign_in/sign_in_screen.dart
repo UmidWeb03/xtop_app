@@ -38,7 +38,7 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 39),
               const AppText(
                 text: 'Hisobga kirish',
-                color: AppColors.greyscaleDarkColor,
+                color: AppColors.darkColor,
                 size: 30,
                 font: FontWeight.bold,
               ),
@@ -68,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                 onTap: () => context.push(AppRoutes.forgotPassword),
                 child: const AppText(
                   text: 'Parolni unutdingizmi?',
-                  color: AppColors.greyscaleDarkColor,
+                  color: AppColors.darkColor,
                   size: 17,
                   font: FontWeight.w500,
                 ),

@@ -1,81 +1,103 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
-import 'package:xtop_app/core/services/local_storage.dart';
-import 'package:xtop_app/presentation/pages/onboarding/welcome_screen.dart';
-import 'package:xtop_app/presentation/pages/onboarding/first_onboarding_screen.dart';
-import 'package:xtop_app/presentation/pages/onboarding/second_onboarding_screen.dart';
+import 'package:xtop_app/core/services/navigation_service.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
+import 'package:xtop_app/presentation/atoms/point/pages_pointer_point.dart';
+import 'package:xtop_app/presentation/pages/onboarding/first_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/second_screen.dart';
+import 'package:xtop_app/presentation/pages/onboarding/third_screen.dart';
 
-class Onboarding extends StatefulWidget {
-  const Onboarding({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
   @override
-  State<Onboarding> createState() => _OnboardingState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingState extends State<Onboarding> {
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController _controller = PageController();
   int currentIndex = 0;
 
-  static const screens = [
-    WelcomeScreen(),
-    FirstOnboardingScreen(),
-    SecondOnboardingScreen(),
+  static const List<Widget> screens = [
+    FirstScreen(),
+    SecondScreen(),
+    ThirdScreen(),
   ];
 
-  Future<void> nextScreen() async {
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onPageChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onPageChanged);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged() {
+    final page = _controller.page?.round();
+    if (page != null && page != currentIndex) {
+      setState(() => currentIndex = page);
+    }
+  }
+
+  Future<void> _finish() async {
+    try {
+      await NavigationService.handleOnboardingComplete(context);
+      // if (mounted) context.go(AppRoutes.home);
+    } catch (e) {
+      debugPrint('Onboarding finish error: $e');
+    }
+  }
+
+  Future<void> _next() async {
     if (currentIndex < screens.length - 1) {
-      setState(() => currentIndex++);
+      await _controller.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     } else {
-      await AppLocalStorage.setOnboardingCompleted();
-      if (context.mounted) context.go(AppRoutes.home);
+      await _finish();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isLastScreen = currentIndex == screens.length - 1;
+    final isLast = currentIndex == screens.length - 1;
     final color =
         currentIndex == 0 ? AppColors.secondaryColor : AppColors.primaryColor;
 
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
       body: Stack(
         children: [
-          IndexedStack(index: currentIndex, children: screens),
+          PageView.builder(
+            controller: _controller,
+            physics: const BouncingScrollPhysics(),
+            itemCount: screens.length,
+            itemBuilder: (context, index) => screens[index],
+          ),
           Positioned(
-            left: 24,
-            right: 24,
-            bottom: 15,
-            child: SafeArea(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      screens.length,
-                      (index) => AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        width: currentIndex == index ? 32 : 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: currentIndex == index
-                              ? color
-                              : color.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  PrimaryButton(
-                    onPressed: nextScreen,
-                    label: isLastScreen ? "Boshlash" : "Keyingisi",
-                  ),
-                ],
-              ),
+            bottom: 40,
+            left: 32,
+            right: 32,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                PagesPointerPoint(
+                  currentIndex: currentIndex,
+                  itemCount: screens.length,
+                  color: color,
+                ),
+                const SizedBox(height: 24),
+                PrimaryButton(
+                  onPressed: _next,
+                  label: isLast ? "Boshlash" : "Keyingisi",
+                ),
+              ],
             ),
           ),
         ],

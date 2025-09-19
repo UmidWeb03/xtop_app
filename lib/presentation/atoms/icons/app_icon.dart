@@ -8,6 +8,9 @@ class AppIcons extends StatelessWidget {
   final BoxDecoration? decoration;
   final double? width;
   final double? height;
+  final double? iconWidth;
+  final double? iconHeight;
+  final EdgeInsets? padding;
   const AppIcons({
     required this.iconPath,
     this.onTap,
@@ -15,6 +18,9 @@ class AppIcons extends StatelessWidget {
     this.decoration,
     this.width,
     this.height,
+    this.iconWidth,
+    this.iconHeight,
+    this.padding,
   });
 
   @override
@@ -37,11 +43,11 @@ class AppIcons extends StatelessWidget {
                 ],
               ),
         margin: margin,
-        padding: const EdgeInsets.all(12),
+        padding: padding == null ? const EdgeInsets.all(12) : padding,
         child: Image.asset(
           iconPath,
-          width: 20,
-          height: 20,
+          width: iconWidth ?? 20,
+          height: iconHeight ?? 20,
         ),
       ),
     );

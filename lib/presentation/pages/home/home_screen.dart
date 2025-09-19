@@ -14,25 +14,29 @@ import 'package:xtop_app/presentation/organisms/sections/product_card.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  final bool _isLoggedIn = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: AppColors.primaryColor,
+        color: _isLoggedIn ? AppColors.secondaryColor : AppColors.primaryColor,
         child: SafeArea(
           child: Stack(
             children: [
-              const AppBackgroundImage(
-                  image: 'assets/images/app_background.png'),
+              if (!_isLoggedIn)
+                AppBackgroundImage(image: 'assets/images/app_background.png'),
               CustomScrollView(
                 slivers: [
                   SliverList(
                     delegate: SliverChildListDelegate.fixed(
                       [
-                        const AppHeader(),
-                        const _HomeBodySection(),
+                        AppHeader(
+                          isLoggedIn: _isLoggedIn,
+                        ),
+                        _HomeBodySection(isLoggedIn: _isLoggedIn),
                       ],
                     ),
                   ),
@@ -47,16 +51,17 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeBodySection extends StatelessWidget {
-  const _HomeBodySection();
-  static final products = ProductData.products;
+  final bool isLoggedIn;
+  const _HomeBodySection({required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
+    final products = ProductData.products(context);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.secondaryColor,
-        borderRadius: BorderRadius.only(
+        color: isLoggedIn ? AppColors.secondaryColor : Colors.white,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
@@ -73,7 +78,7 @@ class _HomeBodySection extends StatelessWidget {
           ),
           const AppText(
             text: 'Maxsus takliflar',
-            color: AppColors.greyscaleDarkColor,
+            color: AppColors.darkColor,
             size: 20,
             font: FontWeight.bold,
             padding: EdgeInsets.only(left: 24, right: 24),
@@ -96,7 +101,7 @@ class _HomeBodySection extends StatelessWidget {
               children: [
                 const AppText(
                   text: 'Eng mashhurlari',
-                  color: AppColors.greyscaleDarkColor,
+                  color: AppColors.darkColor,
                   size: 20,
                   font: FontWeight.bold,
                 ),
@@ -104,7 +109,7 @@ class _HomeBodySection extends StatelessWidget {
                   onTap: () => context.push(AppRoutes.auth),
                   child: const AppText(
                     text: 'Barchasi',
-                    color: AppColors.greyscaleDarkColor,
+                    color: AppColors.darkColor,
                     size: 15,
                     font: FontWeight.bold,
                   ),
@@ -115,21 +120,18 @@ class _HomeBodySection extends StatelessWidget {
           const SizedBox(height: 24),
           const _BodyCategorieSection(),
           Padding(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
-                mainAxisSpacing: 24,
+                // mainAxisSpacing: 24,
                 childAspectRatio: 180 / 350,
               ),
               itemCount: products.length,
               itemBuilder: (context, index) {
-                if (products.isEmpty) {
-                  return const Center(child: Text('Mahsulotlar topilmadi'));
-                }
                 final product = products[index];
                 return ProductCard(product: product);
               },
@@ -141,50 +143,41 @@ class _HomeBodySection extends StatelessWidget {
   }
 }
 
-class _BodyCategorieSection extends StatefulWidget {
+class _BodyCategorieSection extends StatelessWidget {
   const _BodyCategorieSection();
 
-  @override
-  State<_BodyCategorieSection> createState() => _BodyCategorieSectionState();
-}
-
-class _BodyCategorieSectionState extends State<_BodyCategorieSection> {
-  int selectedIndex = -1;
-
-  final productNames = ProductNameData.productName;
+  static final productNames = ProductNameData.productName;
 
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = -1; // local state handled by StatefulBuilder
     return SizedBox(
       height: 38,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: productNames.length,
         itemBuilder: (context, index) {
-          final isSelected = selectedIndex == index;
-          final productName = productNames[index % productNames.length];
+          final productName = productNames[index];
+          final isSelected = index == selectedIndex;
           return Container(
             margin: EdgeInsets.only(
               left: index == 0 ? 24 : 0,
-              right: index == productNames.length - 1 ? 12 : 12,
+              right: 12,
             ),
             child: PrimaryButton(
               onPressed: () {
-                setState(() {
-                  selectedIndex = selectedIndex == index ? -1 : index;
-                });
+                selectedIndex = index;
+                (context as Element).markNeedsBuild();
               },
               width: 0,
               height: 38,
               label: productName.name,
-              border: BorderSide(
+              border: const BorderSide(
                 width: 2,
                 color: AppColors.primaryColor,
               ),
               fontWeight: FontWeight.normal,
-              textColor: isSelected
-                  ? AppColors.secondaryColor
-                  : AppColors.greyscaleDarkColor,
+              textColor: isSelected ? Colors.white : AppColors.primaryColor,
               backgroundColor: isSelected
                   ? AppColors.primaryColor
                   : AppColors.secondaryColor,

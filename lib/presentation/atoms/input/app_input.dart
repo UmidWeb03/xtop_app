@@ -8,6 +8,7 @@ class AppInput extends StatelessWidget {
   final String? suffixIcon;
   final TextEditingController? controller;
   final TextInputType keyboardType;
+  final bool? obscureText;
 
   const AppInput({
     Key? key,
@@ -15,16 +16,18 @@ class AppInput extends StatelessWidget {
     required this.icon,
     this.suffixIcon,
     this.controller,
+    this.obscureText = false,
     this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: obscureText ?? false,
       decoration: InputDecoration(
         hintText: label,
         hintStyle: TextStyle(
-          color: AppColors.greyscaleColor,
+          color: AppColors.greyColor,
           fontSize: 15,
         ),
         prefixIcon: AppIcons(

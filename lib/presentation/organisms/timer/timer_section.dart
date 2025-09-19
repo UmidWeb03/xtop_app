@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
 class TimerWidget extends StatefulWidget {
   final Duration initialDuration;
-  final VoidCallback? onRestartTap;
-  final String timerText;
+  // final VoidCallback? onRestartTap;
+  final String? label;
   final String restartText;
 
   const TimerWidget({
     super.key,
     this.initialDuration = const Duration(minutes: 1),
-    this.onRestartTap,
-    this.timerText = 'Qayta jo\'natish',
+    // this.onRestartTap,
+    this.label = 'Qayta jo\'natish',
     this.restartText = 'Qayta yuborish',
   });
 
@@ -53,8 +54,7 @@ class _TimerWidgetState extends State<TimerWidget>
     _timerController.duration = _currentDuration;
     _timerController.forward();
 
-    // Call the provided callback
-    widget.onRestartTap?.call();
+    // widget.onRestartTap?.call();
   }
 
   @override
@@ -64,25 +64,37 @@ class _TimerWidgetState extends State<TimerWidget>
       builder: (context, child) {
         final remaining = _currentDuration * (1 - _timerController.value);
         final seconds = remaining.inSeconds;
-
+        final label = widget.label;
         if (seconds > 0) {
-          return AppText(
-            text: '${widget.timerText} ${seconds.toString().padLeft(2, '0')} s',
-            color: Colors.grey[600]!,
-            size: 16,
-          );
+          return label == null
+              ? AppText(
+                  text: '${label} ${seconds.toString().padLeft(2, '0')} s',
+                  color: AppColors.greyColor,
+                  size: 16,
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      text: '${label}',
+                      color: AppColors.greyColor,
+                      size: 16,
+                    ),
+                    AppText(
+                      text: '${seconds.toString().padLeft(2, '0')} s',
+                      color: AppColors.greyColor,
+                      size: 16,
+                    ),
+                  ],
+                );
         } else {
           return InkWell(
             onTap: _restartTimer,
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: AppText(
-                text: widget.restartText,
-                color: Theme.of(context).primaryColor,
-                size: 16,
-                font: FontWeight.w600,
-              ),
+            child: AppText(
+              text: widget.restartText,
+              color: AppColors.darkColor,
+              size: 16,
+              font: FontWeight.w600,
             ),
           );
         }

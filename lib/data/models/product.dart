@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+
 class Product {
   final int id;
   final String name;
+  final VoidCallback? onTap;
   final String imagePath;
   final double rating;
   final String line;
@@ -14,6 +17,7 @@ class Product {
   const Product({
     required this.id,
     required this.name,
+    this.onTap,
     required this.imagePath,
     required this.rating,
     required this.line,

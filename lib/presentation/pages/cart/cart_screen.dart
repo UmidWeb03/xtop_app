@@ -6,7 +6,6 @@ import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,6 @@ class CartScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // _CartHeaderSection(),
               _CartBodySection(),
             ],
           ),
@@ -44,7 +42,7 @@ class _AppBarTextSection extends StatelessWidget {
     return Text(
       'Savatcha',
       style: TextStyle(
-        color: AppColors.greyscaleDarkColor,
+        color: AppColors.darkColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,
@@ -68,6 +66,16 @@ class _AppBarIconSection extends StatelessWidget {
       ),
     );
   }
+}
+
+@override
+Widget build(BuildContext context) {
+  return Image.asset(
+    'assets/icons/search_dark.png',
+    width: 20,
+    height: 20,
+    fit: BoxFit.cover,
+  );
 }
 
 class _CartBodySection extends StatelessWidget {
@@ -103,7 +111,7 @@ class _BodyImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/empty.png',
+      'assets/images/cart.png',
       width: 270,
       height: 238,
       fit: BoxFit.cover,

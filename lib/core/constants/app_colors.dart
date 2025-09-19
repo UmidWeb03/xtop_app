@@ -7,13 +7,20 @@ class AppColors {
 
   static const accentColor = Color.fromARGB(255, 53, 56, 63);
 
-  static const greyscaleColor = Color(0xFF9E9E9E);
+  static const greyColor = Color(0xFF9E9E9E);
 
-  static const greyscaleDarkColor = Color(0xFF0D0F12);
+  static const darkColor = Color(0xFF0D0F12);
 
-  static const searchColor = Color.fromARGB(128, 189, 189, 189);
+  static const searchColor = Color(0xFFBDBDBD);
 
-  static const primaryInputColor = Color(0xFF9E9E9E);
+  static const inputColor = Color(0xFF9E9E9E);
+}
 
-  static const secondaryInputColor = Color(0xFFFAFAFA);
+class ProductColors {
+  static const oneColor = Color(0xFF7A5548);
+  static const twoColor = Color(0xFF607D8A);
+  static const threeColor = Color(0xFF9D28AC);
+  static const fourColor = Color(0xFF797979);
+  static const fiveColor = Color(0xFF3F51B5);
+  static const sixColor = Color(0xFF009688);
 }

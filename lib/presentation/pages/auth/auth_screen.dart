@@ -49,7 +49,7 @@ class _AuthBodySection extends StatelessWidget {
         const SizedBox(height: 50),
         const AppText(
           text: "Bizga qo'shiling👋🏻",
-          color: AppColors.greyscaleDarkColor,
+          color: AppColors.darkColor,
           size: 38,
           font: FontWeight.bold,
         ),
