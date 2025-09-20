@@ -3,33 +3,68 @@ import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
+import 'package:xtop_app/presentation/atoms/buttons/search_button.dart';
+import 'package:xtop_app/presentation/organisms/products/product_brend_list.dart';
+import 'package:xtop_app/presentation/organisms/products/product_categoriya_list.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
+
+  final bool _isLoggedIn = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.secondaryColor,
-        title: const _AppBarTextSection(),
-        actions: [
-          const _AppBarIconSection(),
-        ],
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.secondaryColor,
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _CartBodySection(),
-            ],
-          ),
-        ),
-      ),
+      appBar: _isLoggedIn
+          ? null
+          : AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: AppColors.secondaryColor,
+              title: const _AppBarTextSection(),
+              actions: [
+                const _AppBarIconSection(),
+              ],
+            ),
+      body: _isLoggedIn
+          ? Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.secondaryColor,
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 24, right: 24, top: 9),
+                        child: SearchButton(
+                          onTap: () => context.push(AppRoutes.search),
+                          readOnly: false,
+                        ),
+                      ),
+                      const SizedBox(height: 23),
+                      ProductBrandList(),
+                      const SizedBox(height: 32),
+                      ProductList(),
+                      
+                    ],
+                  ),
+                ),
+              ),
+            )
+          : Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.secondaryColor,
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _CartBodySection(),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:xtop_app/presentation/atoms/buttons/secondary_button.dart';
 import 'package:xtop_app/presentation/atoms/colors/product_colors.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_icon.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
-import 'package:xtop_app/presentation/organisms/product_grid/product_grid.dart';
+import 'package:xtop_app/presentation/organisms/products/product_grid.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -221,9 +221,18 @@ class ProductsScreen extends StatelessWidget {
                       color: AppColors.searchColor.withOpacity(0.4),
                       thickness: 1,
                     ),
-                    ProductGrid(),
+                    // ProductGrid(),
                   ],
                 ),
+              ),
+            
+              Container(
+                padding: const EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  top: 0,
+                ),
+                child: ProductGrid(),
               ),
             ],
           ),

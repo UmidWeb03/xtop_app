@@ -14,6 +14,8 @@ class AppColors {
   static const searchColor = Color(0xFFBDBDBD);
 
   static const inputColor = Color(0xFF9E9E9E);
+
+  static const borderColor = Color(0xFFF2F3F9);
 }
 
 class ProductColors {

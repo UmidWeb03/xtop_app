@@ -27,5 +27,6 @@ flutter:
     - assets/icons/dark/
     - assets/icons/light/
     - assets/icons/profile/
+    - assets/icons/category/
 
     - assets/images/
