@@ -43,7 +43,7 @@ class AppIcons extends StatelessWidget {
                 ],
               ),
         margin: margin,
-        padding: padding == null ? const EdgeInsets.all(12) : padding,
+        // padding: padding == null ? const EdgeInsets.all(12) : padding,
         child: Image.asset(
           iconPath,
           width: iconWidth ?? 20,

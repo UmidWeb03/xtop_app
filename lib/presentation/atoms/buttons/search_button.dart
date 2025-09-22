@@ -17,52 +17,50 @@ class SearchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return TextField(
       onTap: onTap,
-      child: TextField(
-        controller: controller,
-        onChanged: onChanged,
-        readOnly: readOnly,
-        decoration: InputDecoration(
-          hintText: 'Mahsulot qidirish...',
-          hintStyle: TextStyle(
+      controller: controller,
+      onChanged: onChanged,
+      readOnly: readOnly,
+      decoration: InputDecoration(
+        hintText: 'Mahsulot qidirish...',
+        hintStyle: TextStyle(
+          color: AppColors.greyColor,
+          fontSize: 15,
+        ),
+        prefixIcon: AppIcons(
+          iconPath: 'assets/icons/search.png',
+          margin: const EdgeInsets.only(
+            left: 20,
+            right: 12,
+          ),
+        ),
+        suffixIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AppIcons(
+              iconPath: 'assets/icons/voice.png',
+              onTap: () {},
+              margin: const EdgeInsets.only(right: 12),
+            ),
+            AppIcons(
+              iconPath: 'assets/icons/filter.png',
+              onTap: () {},
+              margin: const EdgeInsets.only(right: 20),
+            ),
+          ],
+        ),
+        filled: true,
+        fillColor: AppColors.searchColor.withOpacity(0.3),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
             color: AppColors.greyColor,
-            fontSize: 15,
-          ),
-          prefixIcon: AppIcons(
-            iconPath: 'assets/icons/search.png',
-            margin: const EdgeInsets.only(
-              left: 20,
-              right: 12,
-            ),
-          ),
-          suffixIcon: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AppIcons(
-                iconPath: 'assets/icons/voice.png',
-                onTap: () {},
-                margin: const EdgeInsets.only(right: 12),
-              ),
-              AppIcons(
-                iconPath: 'assets/icons/filter.png',
-                onTap: () {},
-                margin: const EdgeInsets.only(right: 20),
-              ),
-            ],
-          ),
-          filled: true,
-          fillColor: AppColors.searchColor.withOpacity(0.3),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(
-              color: AppColors.greyColor.withOpacity(0.3),
-              width: 1,
-            ),
+            width: 1,
           ),
         ),
       ),

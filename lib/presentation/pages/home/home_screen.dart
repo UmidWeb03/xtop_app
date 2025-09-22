@@ -70,7 +70,7 @@ class _HomeBodySection extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: SearchButton(
               onTap: () => context.push(AppRoutes.search),
-              readOnly: false,
+              readOnly: true,
             ),
           ),
           const AppText(

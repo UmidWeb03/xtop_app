@@ -46,7 +46,6 @@ class CategoryScreen extends StatelessWidget {
                       ProductBrandList(),
                       const SizedBox(height: 32),
                       ProductList(),
-                      
                     ],
                   ),
                 ),
