@@ -71,6 +71,7 @@ class _HomeBodySection extends StatelessWidget {
             child: SearchButton(
               onTap: () => context.push(AppRoutes.search),
               readOnly: true,
+              width: 0,
             ),
           ),
           const AppText(

@@ -3,9 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
+import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
+
+  final bool _isLoggedIn = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +21,85 @@ class CartScreen extends StatelessWidget {
           const _AppBarIconSection(),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.secondaryColor,
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _CartBodySection(),
-            ],
-          ),
-        ),
-      ),
+      body: _isLoggedIn
+          ? Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.secondaryColor,
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+              ),
+              child: SafeArea(
+                child: Stack(
+                  children: [
+                    ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: double.infinity,
+                          height: 160,
+                          padding: const EdgeInsets.all(20),
+                          color: Colors.white.withValues(alpha: 0.8),
+                          child: Text('Cart Item'),
+                        );
+                      },
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        width: double.infinity,
+                        height: 100,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AppText(
+                                  text: 'Umumiy hisob',
+                                  size: 15,
+                                  align: TextAlign.start,
+                                ),
+                                const SizedBox(height: 6),
+                                AppText(
+                                  text: '250 000 so\'m',
+                                  size: 20,
+                                  font: FontWeight.bold,
+                                  align: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 20),
+                            PrimaryButton(
+                              onPressed: () {},
+                              width: 0,
+                              label: 'Buyurtma berish',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.secondaryColor,
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _CartBodySection(),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }
@@ -66,16 +136,6 @@ class _AppBarIconSection extends StatelessWidget {
       ),
     );
   }
-}
-
-@override
-Widget build(BuildContext context) {
-  return Image.asset(
-    'assets/icons/search_dark.png',
-    width: 20,
-    height: 20,
-    fit: BoxFit.cover,
-  );
 }
 
 class _CartBodySection extends StatelessWidget {

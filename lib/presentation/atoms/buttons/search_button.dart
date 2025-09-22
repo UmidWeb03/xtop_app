@@ -7,11 +7,13 @@ class SearchButton extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback? onTap;
   final bool readOnly;
+  final double? width;
   const SearchButton({
     super.key,
     this.controller,
     this.onChanged,
     this.onTap,
+    this.width,
     required this.readOnly,
   });
 
@@ -60,7 +62,7 @@ class SearchButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(
             color: AppColors.greyColor,
-            width: 1,
+            width: width != null ? 0 : 1,
           ),
         ),
       ),
