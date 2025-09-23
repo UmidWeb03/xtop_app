@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/buttons/search_button.dart';
 import 'package:xtop_app/presentation/organisms/products/product_brend_list.dart';
 import 'package:xtop_app/presentation/organisms/products/product_categoriya_list.dart';
+import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
+import 'package:xtop_app/presentation/pages/search/search_screen.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -38,7 +38,10 @@ class CategoryScreen extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 24, right: 24, top: 9),
                         child: SearchButton(
-                          onTap: () => context.push(AppRoutes.search),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => SearchScreen()),
+                          ),
                           readOnly: false,
                         ),
                       ),
@@ -176,7 +179,9 @@ class _BodyButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
-      onPressed: () => context.push(AppRoutes.auth),
+      onPressed: () => Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => AuthScreen()),
+      ),
       label: 'Davom etish',
     );
   }

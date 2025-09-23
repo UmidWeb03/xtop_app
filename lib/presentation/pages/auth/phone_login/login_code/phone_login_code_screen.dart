@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_icon.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
@@ -10,6 +8,8 @@ import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 import 'package:xtop_app/presentation/atoms/texts/line_text.dart';
 import 'package:xtop_app/presentation/organisms/bottom/bottom_text_button.dart';
 import 'package:xtop_app/presentation/organisms/timer/timer_section.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
+import 'package:xtop_app/presentation/pages/home/home_screen.dart';
 
 class PhoneLoginCodeScreen extends StatelessWidget {
   const PhoneLoginCodeScreen({super.key});
@@ -84,9 +84,11 @@ class PhoneLoginCodeScreen extends StatelessWidget {
                 const SizedBox(height: 39),
                 PrimaryButton(
                   label: 'Tasdiqlash',
-                  onPressed: () {
-                    context.go(AppRoutes.home);
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 39),
                 const LineText(label: 'Yoki bilan davom etish'),
@@ -110,7 +112,13 @@ class PhoneLoginCodeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 39),
-                BottomTextButton(onTap: () => context.push(AppRoutes.signUp)),
+                BottomTextButton(
+                    onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SignUpScreen(),
+                          ),
+                        ),
+                    text: 'Ortga qaytish'),
                 const SizedBox(height: 20),
               ],
             ),

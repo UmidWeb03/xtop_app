@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/buttons/icon_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -69,9 +68,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       return;
     }
     if (_selectedIndex == 0) {
-      context.push(AppRoutes.forgotPhoneCode);
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+      );
     } else if (_selectedIndex == 1) {
-      context.push(AppRoutes.forgotEmailCode);
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+      );
     }
   }
 

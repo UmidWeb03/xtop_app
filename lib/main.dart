@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
+import 'package:xtop_app/presentation/pages/home/home_screen.dart';
 // import 'package:xtop_app/presentation/pages/products/products.dart';
 
 void main() {
@@ -12,10 +12,10 @@ class XTop_App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
-      // home: const ProductsScreen(),
+      // routerConfig: appRouter,
+      home: const HomeScreen(),
     );
   }
 }

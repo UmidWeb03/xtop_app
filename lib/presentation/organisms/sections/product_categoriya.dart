@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
 
 class ProductCategorySection extends StatelessWidget {
@@ -11,7 +9,10 @@ class ProductCategorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(AppRoutes.products);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => const ProductCategorySection()),
+        );
       },
       child: Container(
         width: 370,

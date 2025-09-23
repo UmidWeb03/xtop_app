@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/data/models/product.dart';
+import 'package:xtop_app/presentation/pages/products/products.dart';
 
 class ProductData {
   static List<Product> products(BuildContext context) {
@@ -16,7 +15,9 @@ class ProductData {
         discountedPrice: 1300000,
         discountPercent: '50%',
         logoPath: 'assets/images/logo.png',
-        onTap: () => context.push(AppRoutes.products),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ProductsScreen()),
+        ),
       ),
       const Product(
         id: 2,

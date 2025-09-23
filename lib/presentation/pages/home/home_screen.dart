@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
 import 'package:xtop_app/presentation/atoms/buttons/search_button.dart';
 import 'package:xtop_app/presentation/atoms/images/app_background_img.dart';
@@ -8,6 +6,8 @@ import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 import 'package:xtop_app/presentation/organisms/headers/app_header.dart';
 import 'package:xtop_app/presentation/organisms/products/product_name_list.dart';
 import 'package:xtop_app/presentation/organisms/products/product_grid.dart';
+import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
+import 'package:xtop_app/presentation/pages/search/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -69,7 +69,9 @@ class _HomeBodySection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24),
             child: SearchButton(
-              onTap: () => context.push(AppRoutes.search),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => SearchScreen()),
+              ),
               readOnly: true,
               width: 0,
             ),
@@ -104,7 +106,9 @@ class _HomeBodySection extends StatelessWidget {
                   font: FontWeight.bold,
                 ),
                 GestureDetector(
-                  onTap: () => context.push(AppRoutes.auth),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => AuthScreen()),
+                  ),
                   child: const AppText(
                     text: 'Barchasi',
                     color: AppColors.darkColor,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_icon.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
@@ -9,6 +7,8 @@ import 'package:xtop_app/presentation/atoms/input/phone_input.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 import 'package:xtop_app/presentation/atoms/texts/line_text.dart';
 import 'package:xtop_app/presentation/organisms/bottom/bottom_text_button.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/forgot_password/verify_email_code/verify_code_email_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
 
 class PhoneNumberLoginScreen extends StatelessWidget {
   const PhoneNumberLoginScreen({super.key});
@@ -48,9 +48,10 @@ class PhoneNumberLoginScreen extends StatelessWidget {
               const SizedBox(height: 24),
               PrimaryButton(
                 label: 'Kodini yuborish',
-                onPressed: () {
-                  context.push(AppRoutes.verifyCode);
-                },
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => VerifyEmailCodeScreen()),
+                ),
               ),
               const SizedBox(height: 76),
               const LineText(label: 'Yoki bilan davom etish'),
@@ -74,7 +75,14 @@ class PhoneNumberLoginScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 76),
-              BottomTextButton(onTap: () => context.push(AppRoutes.signUp)),
+              BottomTextButton(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SignUpScreen(),
+                  ),
+                ),
+                label: 'Orqaga qaytish',
+              ),
             ],
           ),
         ),

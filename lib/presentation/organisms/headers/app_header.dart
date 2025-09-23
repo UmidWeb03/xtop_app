@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
+import 'package:xtop_app/presentation/pages/profile/profile.dart';
 
 class AppHeader extends StatelessWidget {
   final bool isLoggedIn;
@@ -33,7 +32,10 @@ class AppHeader extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          context.push(AppRoutes.profile);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const Profile()),
+                          );
                         },
                         child: CircleAvatar(
                           radius: 24,

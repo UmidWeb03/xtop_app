@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_icon.dart';
 import 'package:xtop_app/presentation/atoms/icons/app_logo.dart';
@@ -10,6 +8,8 @@ import 'package:xtop_app/presentation/atoms/input/app_input.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 import 'package:xtop_app/presentation/organisms/bottom/bottom_text_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/line_text.dart';
+import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -66,9 +66,9 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 20),
               PrimaryButton(
                 label: 'Kirish',
-                onPressed: () {
-                  context.push(AppRoutes.phoneLogin);
-                },
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AuthScreen()),
+                ),
               ),
               const SizedBox(height: 34),
               const LineText(label: 'Yoki bilan ro’yxatdan o’tish'),
@@ -93,7 +93,9 @@ class SignUpScreen extends StatelessWidget {
               ),
               const SizedBox(height: 34),
               BottomTextButton(
-                onTap: () => context.push(AppRoutes.signIn),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SignInScreen()),
+                ),
                 label: "Kirish",
                 text: "Allaqachon hisobingiz mavjudmi?",
               ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_strings.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/data/models/profil_name.dart';
+import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 
 class ProfileData {
   static const String secondaryIcon = 'assets/icons/profile/line_right.png';
@@ -14,7 +13,9 @@ class ProfileData {
         name: names[0],
         primaryIcon: 'assets/icons/profile/users.png',
         secondaryIcon: secondaryIcon,
-        onTap: () => context.push(AppRoutes.auth),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const AuthScreen()),
+        ),
       ),
       ProfileItem(
         id: 2,

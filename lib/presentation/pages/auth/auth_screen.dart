@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
-import 'package:xtop_app/presentation/atoms/buttons/secondary_button.dart'
-    as custom;
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
+import 'package:xtop_app/presentation/atoms/buttons/secondary_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
 import 'package:xtop_app/presentation/organisms/bottom/bottom_text_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/line_text.dart';
+import 'package:xtop_app/presentation/pages/auth/phone_login/login_code/phone_login_code_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_in/sign_in_screen.dart';
+import 'package:xtop_app/presentation/pages/auth/sign_up/sign_up_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -54,14 +54,18 @@ class _AuthBodySection extends StatelessWidget {
           font: FontWeight.bold,
         ),
         const SizedBox(height: 50),
-        custom.SecondaryButton(
-          onPressed: () => context.push(AppRoutes.signIn),
+        SecondaryButton(
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SignInScreen()),
+          ),
           icon: 'assets/images/google_icon.png',
           label: 'Google bilan davom etish',
         ),
         const SizedBox(height: 16),
-        custom.SecondaryButton(
-          onPressed: () => context.push(AppRoutes.signIn),
+        SecondaryButton(
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SignInScreen()),
+          ),
           icon: 'assets/images/apple_icon.png',
           label: 'Apple bilan davom etish',
         ),
@@ -70,13 +74,17 @@ class _AuthBodySection extends StatelessWidget {
         const SizedBox(height: 24),
         PrimaryButton(
           label: 'Telefon raqam orqli krish',
-          onPressed: () => context.push(AppRoutes.phoneLogin),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => PhoneLoginCodeScreen()),
+          ),
           backgroundColor: AppColors.primaryColor,
           textColor: AppColors.secondaryColor,
         ),
         const SizedBox(height: 50),
         BottomTextButton(
-          onTap: () => context.push(AppRoutes.signUp),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SignUpScreen()),
+          ),
         ),
       ],
     );

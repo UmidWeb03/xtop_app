@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xtop_app/core/constants/app_colors.dart';
-import 'package:xtop_app/core/routes/app_routes.dart';
 import 'package:xtop_app/presentation/atoms/buttons/primary_button.dart';
 import 'package:xtop_app/presentation/atoms/texts/app_text.dart';
+import 'package:xtop_app/presentation/pages/auth/auth_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -202,7 +201,9 @@ class _BodyButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
-      onPressed: () => context.push(AppRoutes.auth),
+      onPressed: () => Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => AuthScreen()),
+      ),
       label: 'Davom etish',
     );
   }
